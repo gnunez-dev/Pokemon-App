@@ -68,7 +68,7 @@ const getPokemons = async (query) => {
     let listDbQuery = await Pokemon.findAll({include: Type})
     let listDb = listDbQuery.map( p =>{ 
         return {
-           
+            id: p.dataValues.id,
             name:  p.dataValues.name,
             hp: p.dataValues.hp,
             attack: p.dataValues.attack,
