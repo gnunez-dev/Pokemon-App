@@ -91,17 +91,23 @@ const getPokemons = async (query) => {
 
 const getPokemonById = async ( id ) => {
 
-    let listApi = await queryApi();
-    let pokemon = listApi.filter( p => p.id === Number(id));
+    let listPokemons = await getPokemons();
+    let idGet;
+    if(id.length > 3 ){
+        idGet = id
+    } else {
+        idGet = Number(id)
+    }
+    let pokemon = listPokemons.filter( p => p.id === idGet);
     return pokemon[0];
 
 }
 
 const getPokemonByName = async ( name ) => {
 
-    let listApi = await queryApi();
-    let pokemon = listApi.filter( p => p.name.toLowerCase() === ( name.toLowerCase() ));
-    return pokemon[0];
+    let listPokemons = await getPokemons();
+    let pokemon = listPokemons.filter( p => p.name.toLowerCase() === ( name.toLowerCase() ));
+    return pokemon;
 
 }
 const getTypes = async () => {

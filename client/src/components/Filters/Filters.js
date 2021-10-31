@@ -1,10 +1,10 @@
-
-import { useDispatch } from "react-redux";
-import { filterPokemonsByOrden, filterPokemonsFrom } from "../../actions";
+import { useState, useEffect} from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { filterPokemonsByOrden, filterPokemonsByOrdenAttack, filterPokemonsFrom, filterPokemonsByType, getTypes } from "../../actions/index";
 import './Filters.css'
 
 
-const Filters = () => {
+const Filters = ({handlePaginate}) => {
 
 
     /**
@@ -14,26 +14,79 @@ const Filters = () => {
      *  crear los reducers que se necesiten segun el tipo de filtro
      */
 
+    
+
     let dispatch = useDispatch();
+    let [orden, setOrden] = useState('');
+    let [from, setFrom] = useState('');
+    let types = useSelector( state => state.allTypes )
+
+    useEffect( () => {
+        dispatch( getTypes() )
+    }, [dispatch])
+
 
     const handleChageOrder = (e) => {
-        e.preventDefault();
         dispatch(filterPokemonsByOrden(e.target.value));
-        console.log('handler Filter Orden')
-    }
+        handlePaginate(1)
+        setOrden(`Orden ${e.target.value}`)
+  
+      }
+      const handleChageOrdenAttack = (e) => {
+        dispatch(filterPokemonsByOrdenAttack(e.target.value));
+        handlePaginate(1)
+        setOrden(`Orden ${e.target.value}`)
+      }
+  
+      const handleChageTypes = (e) => {
+        dispatch( filterPokemonsByType(e.target.value) )
+  
+      }
+  
+      const handleChageFrom = (e) => {
+        dispatch( filterPokemonsFrom(e.target.value) )
+        setFrom(`From ${e.target.value}`)
+      }
 
     return (
         <nav className='filters'>
-            <ul>
-                <li key="orden">
-                    <label>Ordernar</label>
-                    <select onChange={ (e) => handleChageOrder(e)}>
-                        <option value="A-Z">A-Z</option>
-                        <option value="Z-A">Z-A</option>
-                    </select>
-                </li>
-            </ul>
-        </nav>
+        <ul>
+            <li key="orden">
+                <label>Ordernar</label>
+                <select onChange={ (e) => handleChageOrder(e)}>
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
+                </select>
+            </li>
+            <li key="attack">
+                <label>Attack</label>
+                <select onChange={ (e) => handleChageOrdenAttack(e)} >
+                  <option value="asc">Asc</option>
+                  <option value="desc">Desc</option>
+                </select>
+            </li>
+            <li key="types">
+                <label>Types</label>
+                <select onChange={ (e) => handleChageTypes(e)} >
+                    <option key="all1" value="All">All</option>
+                    {
+                        types && types.map( t => {
+                            return <option key={t.id} value={t.name}>{t.name}</option>
+                        })
+                    }
+                </select>
+            </li>
+            <li key="from">
+                <label>Clase</label>
+                <select onChange={ (e) => handleChageFrom(e)} >
+                    <option value="All">All</option>
+                    <option value="existentes">existentes</option>
+                    <option value="creados">creados</option>                    
+                </select>
+            </li>
+            
+        </ul>
+      </nav>
     )
 }
 
