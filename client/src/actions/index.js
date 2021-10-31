@@ -1,20 +1,33 @@
-import {GET_POKEMONS, GET_POKEMONS_ID, GET_POKEMONS_NAME, ADD_POKEMON} from "./constants";
+import { GET_POKEMONS, FILTER_ORDER, FILTER_TYPE, FILTER_FROM, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON } from "./constants";
 import axios from "axios"
 
-export function getPokemons() {
+//La acción es simplemente para despachar un tipo
 
-    return function (dispatch) {
+export const getPokemons = () => {
+
+    return dispatch => {
         return axios.get('http://localhost:3001/pokemons')
             .then( pokemons => dispatch( {type: GET_POKEMONS, payload: pokemons.data} ))
-            //.catch( error => { return {msg: 'Ha ocurrido un error al tratar de optener los pokemones', error}})
+            .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los pokemones', error}})
     }
 
 }
-/* export function getPokemons(){
-    return function(dispatch){
-      return fetch('http://localhost:3001/pokemons')
-            .then( response => response.json())
-            .then(json => dispatch({type: GET_POKEMONS, payload: json }))
-           
-    }
-  } */
+
+export const filterPokemonsByOrden = (orden) => {
+    
+    console.log('action', orden)
+    return { type: FILTER_ORDER, payload: orden }
+
+}
+
+export const filterPokemonsByType = (type) => {
+
+    return { type: FILTER_TYPE, payload: type }
+
+}
+
+export const filterPokemonsFrom = (from) => {
+
+    return { type: FILTER_FROM, payload: from }
+
+}
