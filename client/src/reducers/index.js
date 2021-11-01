@@ -97,6 +97,13 @@ export default function rootReducer(state = initialState, action) {
                 pokemonsList: action.payload
             }
 
+        case ADD_POKEMON:
+            return {
+                ...state,
+                pokemonsList: state.pokemonsList.concat(action.payload),
+                allPokemons: state.allPokemons.concat(action.payload)
+            }
+
         default:
             return { ...state }
 

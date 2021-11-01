@@ -5,11 +5,3 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-.container-pokemons li{
-    width: calc(33.33% - 20px);
-    margin: 10px
-}
-
-.pokemon-img img{
-    width: 120px;
-}

@@ -1,0 +1,9 @@
+.pokemon{
+    border: 1px solid var(--violeta);
+    width: calc(33.33% - 22px);
+    margin: 10px
+}
+
+.pokemon .pokemon-img img{
+    width: 120px;
+}

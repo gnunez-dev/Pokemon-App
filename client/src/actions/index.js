@@ -59,3 +59,14 @@ export const filterPokemonsFrom = (from) => {
     return { type: FILTER_FROM, payload: from }
 
 }
+
+
+//CREATE 
+
+export const createPokemon = (newPokemon) => {
+    return dispatch => {
+        return axios.post('http://localhost:3001/pokemons', newPokemon)
+            .then( newPokemon => dispatch({type:ADD_POKEMON, payload: newPokemon.data}) )
+            .catch( error => { return {msg: 'Ha ocurrido un error al tratar de crear el nuevo pokemon', error}})
+    }
+}
