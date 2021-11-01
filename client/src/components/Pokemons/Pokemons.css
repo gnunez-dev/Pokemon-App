@@ -1,0 +1,9 @@
+.cont-pokemons{
+    width: 80%;
+}
+
+.cont-pokemons .pokemons{
+    display: flex;
+    width: calc( 33.33% -20px);
+    flex-wrap: wrap;
+}

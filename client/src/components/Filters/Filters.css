@@ -1,0 +1,6 @@
+nav.filters{
+    width: 20%;
+    background: var(--violeta);
+    padding: 20px;
+    border-radius: 30px;
+}

@@ -1,9 +1,30 @@
 .pokemon{
-    border: 1px solid var(--violeta);
-    width: calc(33.33% - 22px);
-    margin: 10px
+    border: 2px solid var(--violetaoscura);
+    width: calc(33.33% - 34px);
+    margin: 70px 15px 20px;
+    text-align: center;
+    border-radius: 30px;
+    padding-bottom: 15px;
+    background: #fff;
+    box-shadow: 3px 3px 3px var(--violetaoscura);
+}
+.pokemon:hover{
+    box-shadow: 3px 3px 10px var(--violetaoscura);
+    transition: all ease 0.2s;
+}
+.pokemon .pokemon-img{
+    margin-top: -50px
+}
+.pokemon .pokemon-img img{
+    height: 120px;
+    width: auto;
+}
+.pokemon h3{
+    font-size: 32px;
+    margin-block: 15px 10px;
+    color: var(--violetaoscura);
 }
 
-.pokemon .pokemon-img img{
-    width: 120px;
+.pokemon-type span{
+    padding-inline: 5px;
 }

@@ -5,8 +5,8 @@ import './Pokemons.css';
 const Pokemons = ({pokemonsLength, currentPokemons, pokemonsPerPage, handlePaginate}) => {
 
     return(
-        <div>
-            <div className='container-pokemons'>
+        <div className='cont-pokemons'>
+            <div className='pokemons'>
                 { currentPokemons && currentPokemons.map( p => {
                     return(
                     

@@ -1,6 +1,9 @@
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { filterPokemonsByOrden, filterPokemonsByOrdenAttack, filterPokemonsFrom, filterPokemonsByType, getTypes } from "../../actions/index";
+import {ReactComponent as LogoPokemon} from '../../img/logo-pokemon.svg';
+import Filter from '../Filter/Filter';
+import SearchBar from '../SearchBar/SearchBar';
 import './Filters.css'
 
 
@@ -50,43 +53,32 @@ const Filters = ({handlePaginate}) => {
 
     return (
         <nav className='filters'>
-        <ul>
-            <li key="orden">
-                <label>Ordernar</label>
-                <select onChange={ (e) => handleChageOrder(e)}>
-                    <option value="asc">Asc</option>
-                    <option value="desc">Desc</option>
-                </select>
-            </li>
-            <li key="attack">
-                <label>Attack</label>
-                <select onChange={ (e) => handleChageOrdenAttack(e)} >
-                  <option value="asc">Asc</option>
-                  <option value="desc">Desc</option>
-                </select>
-            </li>
-            <li key="types">
-                <label>Types</label>
-                <select onChange={ (e) => handleChageTypes(e)} >
-                    <option key="all1" value="All">All</option>
-                    {
-                        types && types.map( t => {
-                            return <option key={t.id} value={t.name}>{t.name}</option>
-                        })
-                    }
-                </select>
-            </li>
-            <li key="from">
-                <label>Clase</label>
-                <select onChange={ (e) => handleChageFrom(e)} >
-                    <option value="All">All</option>
-                    <option value="existentes">existentes</option>
-                    <option value="creados">creados</option>                    
-                </select>
-            </li>
-            
-        </ul>
-      </nav>
+            <SearchBar/>
+            <Filter
+                name='Ordernar'
+                options={[{id:'asc', name:'Ascendiente'}, {id:'desc', name:'Descendiente'}]}
+                handleChange={handleChageOrder}
+            />
+
+            <Filter
+                name='Attack'
+                options={[{id:'asc', name:'Ascendiente'}, {id:'desc', name:'Descendiente'}]}
+                handleChange={handleChageOrdenAttack}
+            />
+
+            <Filter
+                name='Types'
+                options={[...types, {id:'all', name:'All'}]}
+                handleChange={handleChageTypes}
+            />
+
+            <Filter
+                name='Clase'
+                options={[{id:'all', name:'All'},{id:'existentes', name:'Existentes'},{id:'creados', name:'Creados'}]}
+                handleChange={handleChageFrom}
+            />
+
+        </nav>
     )
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 import Home from './components/Home/Home';
-import Nav from './components/Nav';
 import LandingPage from './components/LandingPage/LandingPage';
 import Create from './components/Create/Create'
 
@@ -11,7 +10,6 @@ function App() {
   return (
 
     <React.Fragment>
-      <Nav />
       <Route exact path="/" component={LandingPage} />
       <Route exact path="/home" component={Home} />
       <Route exact path="/create" component={Create} />

@@ -1,0 +1,8 @@
+.item-filter{
+    display: block;
+}
+
+.item-filter label{
+    display: block;
+    color: var(--blanco)
+}

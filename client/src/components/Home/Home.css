@@ -1,7 +1,18 @@
-.container-pokemons{
+.cont-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+.cont-home .container{
+    display: flex;
+    flex-direction: row;
+}
+
+/* .container-pokemons{
     display: flex;
     list-style: none;
     padding: 0;
     flex-wrap: wrap;
     justify-content: center;
-}
+} */
