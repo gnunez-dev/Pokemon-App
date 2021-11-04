@@ -22,9 +22,9 @@ const Pokemons = ({pokemonsLength, currentPokemons, pokemonsPerPage, handlePagin
 
             </div>
             <Pagination
-            pokemonsPerPage={pokemonsPerPage}
-            totalPokemons={pokemonsLength}
-            handlePaginate={handlePaginate}
+                pokemonsPerPage={pokemonsPerPage}
+                totalPokemons={pokemonsLength}
+                handlePaginate={handlePaginate}
             />
         </div>
     )

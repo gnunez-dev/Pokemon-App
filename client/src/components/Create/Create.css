@@ -1,0 +1,15 @@
+.cont-create{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cont-create > .container{
+    padding-block: 80px;
+}
+.cont-types label:first-child{
+    display: block;
+}
+.cont-types label.item-types{
+    display: inline-block;
+}

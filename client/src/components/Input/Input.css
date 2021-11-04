@@ -1,0 +1,9 @@
+.item-form {
+    margin-block: 20px;
+}
+.item-form :is(label, input){
+    display: block;
+}
+.item-form input{
+    width: 100%;
+}

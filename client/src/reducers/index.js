@@ -57,7 +57,6 @@ export default function rootReducer(state = initialState, action) {
                     if( a.attack > b.attack ) return 1
                     return 0
                 });
-
             return {
                 ...state,
                 pokemonsList: ordenPokemonsAttack
@@ -65,7 +64,7 @@ export default function rootReducer(state = initialState, action) {
         case FILTER_TYPE:
 
             const pokemonsFilters = state.allPokemons.filter( p => p.types.includes(action.payload) ) 
-            const filterPokemons = action.payload === 'All' ? state.allPokemons : pokemonsFilters
+            const filterPokemons = action.payload === 'all' ? state.allPokemons : pokemonsFilters
             
 
             return {
@@ -76,7 +75,7 @@ export default function rootReducer(state = initialState, action) {
         case FILTER_FROM:
 
             const pokemonsFrom = action.payload === 'existentes' ? state.allPokemons.filter( p => p.id && typeof p.id === 'number') : state.allPokemons.filter( p => p.id && typeof p.id !== 'number')
-            const pokemonsFilterFrom = action.payload === 'All' ? state.allPokemons : pokemonsFrom
+            const pokemonsFilterFrom = action.payload === 'all' ? state.allPokemons : pokemonsFrom
 
             return {
                 ...state,
@@ -91,17 +90,20 @@ export default function rootReducer(state = initialState, action) {
             }
         
         case GET_POKEMON_NAME:
-            console.log('reducer name', action.payload)
             return {
                 ...state,
                 pokemonsList: action.payload
             }
 
-        case ADD_POKEMON:
+        case GET_POKEMON_ID:
             return {
                 ...state,
-                pokemonsList: state.pokemonsList.concat(action.payload),
-                allPokemons: state.allPokemons.concat(action.payload)
+                pokemonId: action.payload
+            }
+
+        case ADD_POKEMON:
+            return {
+                ...state
             }
 
         default:

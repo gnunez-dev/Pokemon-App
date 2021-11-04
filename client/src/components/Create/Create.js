@@ -1,24 +1,97 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTypes, createPokemon } from '../../actions/index'
+import { getTypes, createPokemon } from '../../actions/index';
+import Container from '../Container/Container';
+import Nav from '../Nav/Nav';
+import Input from "../Input/Input";
+import './Create.css';
 
 
 const Create = () => {
 
     let inicialStateFormulario = {
         name: "",
-        hp: 1,
-        attack: 1,
-        defense: 1,
-        speed: 1,
-        height: 1,
-        weight: 1,
+        hp: null,
+        attack: null,
+        defense: null,
+        speed: null,
+        height: null,
+        weight: null,
         types: [] 
     }
-
+    let errorInicialState = {
+        name: null,
+        image: null,
+        hp:null,
+        attack:null,
+        defense:null,
+        speed:null,
+        height:null,
+        weight:null,
+        types:null,
+    }
     let [formulario, setFormulario ] = useState(inicialStateFormulario);
     let dispatch = useDispatch();
     let typesPokemons = useSelector( state => state.allTypes ) 
+    let [errors, setErrors] = useState(errorInicialState)
+
+
+    let errorValidate = {
+        name: {
+            condition: formulario.name.length < 3 ,
+            msg: 'Debe completar este campo, debe contener por lo menos 3 letras'
+        },
+        image: {
+            condition: !/^(ftp|http|https):\/\/[^ "]+$/.test(formulario.image),
+            msg: 'Debe completar este campo, debe contener una url'
+        },
+        hp: {
+            condition: formulario.hp < 0,
+            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+        },
+        attack: {
+            condition: formulario.attack < 0,
+            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+        },
+        defense: {
+            condition: formulario.defense < 0,
+            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+        },
+        speed: {
+            condition: formulario.speed < 0,
+            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+        },
+        height: {
+            condition: formulario.height < 0,
+            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+        },
+        weight: {
+            condition: formulario.weight < 0 ,
+            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+        },
+        types: {
+            condition: formulario.types.length === 0,
+            msg: 'Este campo es requerido, debes seleccionar por lo menos un tipo de pokemon'
+        },
+
+    }
+
+
+    const validate = (formulario, e) => {
+
+        if( !formulario[e.target.name] || errorValidate[e.target.name].condition) {
+
+            errors[e.target.name] = errorValidate[e.target.name].msg
+           
+        } else {
+            errors[e.target.name] = ''
+        }
+       
+    }
+
+    const validateSubmint = () => {
+        
+    }
 
     useEffect( () => {
         dispatch( getTypes() )
@@ -31,10 +104,19 @@ const Create = () => {
     }
 
     const handleChange = (e) => {
+
         setFormulario({
             ...formulario,
             [e.target.name] : e.target.value
         })
+
+        validate({
+            ...formulario,
+            [e.target.name] : e.target.value
+        }, e);
+
+        setErrors(errors)
+
     } 
     
     const handleCheckbox = (e) => {
@@ -45,93 +127,121 @@ const Create = () => {
             })
         }
     }
+
+  
     
     return (
-        <form onSubmit={handleSubmint}>
-            <input
-                type='text'
-                name='name'
-                value={formulario.name}
-                onChange={ (e) => handleChange(e) }
-            /><br/>
-            <input
-                type='number'
-                name='hp'
-                value={formulario.hp}
-                onChange={ (e) => handleChange(e) }
-            /><br/>
-            <input
-                type='number'
-                name='attack'
-                value={formulario.attack}
-                onChange={ (e) => handleChange(e) }
-            /><br/>
-            <input
-                type='number'
-                name='defense'
-                value={formulario.defense}
-                onChange={ (e) => handleChange(e) }
-            /><br/>
-            <input
-                type='number'
-                name='speed'
-                value={formulario.speed}
-                onChange={ (e) => handleChange(e) }
-            /><br/>
-            <input
-                type='number'
-                name='height'
-                value={formulario.height}
-                onChange={ (e) => handleChange(e) }
-            /><br/>
-            <input
-                type='number'
-                name='weight'
-                value={formulario.weight}
-                onChange={ (e) => handleChange(e) }
-            /><br/>
-            <div>
+        <div className="cont-create">
+            <Nav/>
+            <Container>
+                
+                <form onSubmit={handleSubmint}>
+                    
+                    <Input
+                        label='Name'
+                        type='text'
+                        name='name'
+                        value={formulario.name}
+                        error={errors.name}
+                        handleChange={handleChange}
+                    />
+                    <Input
+                        label='Imagen'
+                        type='text'
+                        name='image'
+                        value={formulario.image}
+                        error={errors.image}
+                        handleChange={handleChange}
+                    />
+                    <Input
+                        label='Life'
+                        type='number'
+                        name='hp'
+                        value={formulario.hp}
+                        error={errors.hp}
+                        handleChange={handleChange}
+                    />
+                    <Input
+                        label='Attack'
+                        type='number'
+                        name='attack'
+                        value={formulario.attack}
+                        error={errors.attack}
+                        handleChange={handleChange}
+                    />
+                
+                    <Input
+                        label='Defense'
+                        type='number'
+                        name='defense'
+                        value={formulario.defense}
+                        error={errors.defense}
+                        handleChange={handleChange}
+                    />
+                
+                    <Input
+                        label='Speed'
+                        type='number'
+                        name='speed'
+                        value={formulario.speed}
+                        error={errors.speed}
+                        handleChange={handleChange}
+                    />
+                    
+                    <Input
+                        label='Height'
+                        type='number'
+                        name='height'
+                        value={formulario.height}
+                        error={errors.height}
+                        handleChange={handleChange}
+                    />
+                    
+                    <Input
+                        label='Weight'
+                        type='number'
+                        name='weight'
+                        value={formulario.weight}
+                        error={errors.weight}
+                        handleChange={ handleChange }
+                    />
+                    
 
-                {
-                    //<label><input type="checkbox" id="cbox1" value="first_checkbox"> Este es mi primer checkbox</label><br>
-                    typesPokemons && typesPokemons.map( t => {
-                        return (
-                            <label>
-                                <input 
-                                    type="checkbox"
-                                    name="types"
-                                    key={t.id}
-                                    value={t.id}
-                                    onChange={ (e) => handleCheckbox(e) }
-                                    />
-                                {t.name}
+                    <div className='cont-types'>
+                        <label>Types</label>
+                        {
+                            typesPokemons && typesPokemons.map( t => {
+                                return (
+                                    <label className="item-types">
+                                        <input 
+                                            type="checkbox"
+                                            name="types"
+                                            key={t.id}
+                                            value={t.id}
+                                            onChange={ (e) => handleCheckbox(e) }
+                                            />
+                                        {t.name}
 
-                                <br/>
-                            </label>
+                                        <br/>
+                                    </label>
+                                    )
+                            })
+                        }
+
+                        {
+                            errors.types && (
+                               <p className='error-form'>{errors.types}</p>
                             )
-                    })
-                }
+                        }
 
-            </div>
-            <button>Crear</button>
-        </form>
+                    </div>
+                    <button className={ errors ? `btn-desactive` : `btn-act`}>Crear</button>
+                </form>
+            </Container>
+        </div>
     )
 }
 
 
-/* 
-
-{
-    "name": "test",
-    "hp": 50,
-    "attack": 20,
-    "defense": 10,
-    "speed": 52,
-    "height": 55,
-    "weight": 5,
-    "types": ["2ceecd61-d555-4ab2-a10b-7cfdce40bdda","b0f82f1f-4949-479b-86f3-863535d682a0"]
-}
-
-*/
 
 export default Create;

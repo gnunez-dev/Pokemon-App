@@ -18,7 +18,6 @@ router.get('/pokemons/:id', async (req, res, next) => {
 
     try {
         let {id} = req.params; 
-        console.log('try id', id)
         let pokemon = await getPokemonById(id);
         console.log('ruta', {pokemon})
         res.send( pokemon )

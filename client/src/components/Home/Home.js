@@ -23,10 +23,7 @@ const Home = () => {
   return (
     <div className="cont-home">
       <Nav />
-      
-      
       <h1>Pokemons</h1>
-
       <Container>
         <Filters handlePaginate={handlePaginate}/>
         { pokemons.length !== 0 ? 

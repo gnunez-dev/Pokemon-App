@@ -29,11 +29,21 @@ export const getTypes = () => {
 export const getPokemonByName = (name) => {
     console.log('accion', name)
     return dispatch => {
-        return axios.get(`http://localhost:3001/pokemons?name=${name}`)
+        return axios.get(`http://localhost:3001/pokemons/?name=${name}`)
             .then( pokemonName => dispatch( { type: GET_POKEMON_NAME, payload: pokemonName.data } ))
             .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los resultados de la busqueda', error}})
     }
 }
+
+
+export const getPokemonById = (id) => {
+    return dispatch => {
+        return axios.get(`http://localhost:3001/pokemons/${id}`)
+            .then( pokemonID => dispatch({type: GET_POKEMON_ID, payload: pokemonID.data}))
+            .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los resultados de la busqueda', error}})
+    }
+}
+
 
 //FILTERS
 
