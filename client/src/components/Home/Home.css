@@ -3,9 +3,19 @@
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-    margin-bottom: 50px;
+    padding-block: 80px 50px;
 }
 .cont-home .container{
     display: flex;
     flex-direction: row;
+}
+
+
+@media(max-width:768px){
+    .cont-home{
+        padding: 20px 10px 30px;
+    }
+    .cont-home .container {
+        flex-direction: column;
+    }
 }

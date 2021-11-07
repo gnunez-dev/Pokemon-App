@@ -23,7 +23,7 @@ const Pokemon = ({ id, image, name, types }) => {
             
             </div>
 
-            <Link to={`/pokemon/${id}`}>See Details</Link>
+            <Link to={`/pokemon/${id}`} className='btn-see-details'>See Details</Link>
 
         </div>
     )

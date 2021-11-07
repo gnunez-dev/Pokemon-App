@@ -31,3 +31,7 @@ code {
   outline: 1px solid var(--violetaoscura);
   box-shadow: 0 0 4px var(--violetaoscura);
 }
+
+button{
+  cursor: pointer
+}

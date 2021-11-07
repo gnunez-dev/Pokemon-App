@@ -4,8 +4,42 @@ nav.filters{
     padding: 20px;
     border-radius: 30px;
     min-height: 100vh;
+    margin-right: 20px;
 }
 
 nav.filters .search-bar{
     margin-bottom: 30px
+}
+
+.clear-filters{
+    margin-top: 40px;
+}
+
+.clear-filters button{
+    border: 0;
+    border-radius: 30px;
+    background: var(--amarillo);
+    width: 100%;
+    padding: 12px 30px;
+    color: var(--violeta);
+    font-weight: 700;
+    transition: var(--transition);
+    font-size: 17px;
+}
+
+.clear-filters button:hover{
+    background: var(--rosa);
+    color: var(--blanco);
+    box-shadow: 0 0 5px var(--violetaoscura);
+}
+
+@media(max-width:768px){
+    
+    nav.filters{
+        width: calc( 100% - 40px );
+        padding: 20px;
+        min-height: auto;
+        margin-right: 0;
+    }
+
 }

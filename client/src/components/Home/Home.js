@@ -46,7 +46,7 @@ const Home = () => {
     e.preventDefault();
     dispatch( actionFilters.origin('all') )
     dispatch( actionFilters.types('all') )
-    setFilters({...filters, types: 'all', origin: 'all'})
+    setFilters(stateFilters)
     handlePaginate(1)
     
   }
@@ -59,6 +59,7 @@ const Home = () => {
         <Filters 
           handleChange={handleFilters}
           handleSubmit={handleClearFilter}
+          selected={filters}
         />
         {    
           noHayResultados ?

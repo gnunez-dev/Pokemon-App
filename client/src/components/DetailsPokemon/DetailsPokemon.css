@@ -1,0 +1,127 @@
+.cont-DetailsPokemon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cont-DetailsPokemon > .container{
+
+}
+
+.cont-title{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+.cont-title .container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cont-title h1{
+    font-size: 100px;
+    line-height: 1;
+    margin-block: 180px -40px;
+    font-style: italic;
+    text-shadow: 3px 2px #ffffff;
+    color: var(--rosa);
+}
+
+
+.detailsPokemon{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background: var(--violeta);
+    margin-bottom: 80px;
+}
+
+.detailsPokemon .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detailsPokemon .cont-image img{
+    width: 600px;
+    margin-top: -22%;
+    margin-bottom: -10%;
+    display: block;
+}
+
+.detailsPokemon .cont-details{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detailsPokemon .cont-details ul{
+    padding-left: 0;
+    list-style: none;
+}
+.detailsPokemon .cont-details > ul li{
+    display: inline-block;
+    width: 33%;
+}
+.detailsPokemon .cont-details > ul li :is(h4, span){
+    display: inline-block;
+    font-style: italic;
+}
+.detailsPokemon .cont-details > ul li h4{
+    font-size: 20px;
+    font-weight: 100;
+    margin-right: 4px;
+    color: #FFF;
+    margin-block: 0 15px;
+}
+.detailsPokemon .cont-details > ul li span{
+    font-family: var(--fonttitle);
+    font-size: 30px;
+    color: var(--amarillo)
+}
+
+.detailsPokemon .cont-details .cont-types{
+    width: 100%;
+}
+.detailsPokemon .cont-details .cont-types h4{
+    font-size: 20px;
+    font-weight: 100;
+    font-style: italic;
+    color: var(--blanco);
+    margin-block: 0;
+    line-height: 1;
+}
+
+.detailsPokemon .cont-details .cont-types ul{
+    margin-top:0
+}
+
+.detailsPokemon .cont-details .cont-types ul li {
+    font-family: var(--fonttitle);
+    font-size: 30px;
+    color: var(--amarillo);
+    font-style: italic;
+    width: fit-content;
+    display: inline-block;
+}
+.detailsPokemon .cont-details .cont-types ul li:not(:last-child){
+    padding-right: 20px;
+}
+.detailsPokemon .cont-details .cont-types ul li:not(:last-child):after{
+    content: ' ';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    margin: 15px 0 0 9px;
+    background: var(--blanco);
+}
+
+
+.cont-DetailsPokemon .pokemon {
+    width: calc(100% - 34px);
+}

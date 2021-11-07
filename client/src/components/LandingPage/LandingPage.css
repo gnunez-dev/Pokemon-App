@@ -29,11 +29,12 @@
     margin-top: 50px;
 }
 .cont-landingpage section .btn-landingpage button{
-    padding: 14px 30px 12px;
+    padding: 14px 30px 16px;
     color: var(--blanco);
     background: var(--rosa);
     box-shadow: 2px 3px 8px var(--violetaoscura);
     font-size: 19px;
+    font-weight: 700;
     word-spacing: 0.5px;
     line-height: 1.2;
     border: 0;

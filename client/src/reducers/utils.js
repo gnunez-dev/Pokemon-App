@@ -84,3 +84,4 @@ export const pokemonsFilterOrigin = (state, payload) => {
     }
 
 }
+
