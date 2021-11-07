@@ -1,7 +1,7 @@
 import React from 'react';
 import './Pagination.css';
 
-const Pagination = ({ pokemonsPerPage, totalPokemons, handlePaginate }) => {
+const Pagination = ({ pokemonsPerPage, totalPokemons, handlePaginate, currentPage }) => {
    
     const pageNumbers = []; //En este array se van a ir pusheando los numeros de págs que se tendrán
 
@@ -23,6 +23,7 @@ const Pagination = ({ pokemonsPerPage, totalPokemons, handlePaginate }) => {
                         key={n}
                         className="btn-pagination"
                         onClick={ ()=> handlePaginate(n)} 
+                        className={ currentPage === n ? `active` : ``}
                     >
                     {n}
                     </button>

@@ -5,5 +5,5 @@ export const ADD_POKEMON = 'ADD_POKEMON';
 export const FILTER_ORDER = 'FILTER_ORDER';
 export const FILTER_ORDER_ATTACK = 'FILTER_ORDER_ATTACK';
 export const FILTER_TYPE = 'FILTER_TYPE';
-export const FILTER_FROM = 'FILTER_FROM';
+export const FILTER_ORIGIN = 'FILTER_ORIGIN';
 export const GET_TYPES = 'GET_TYPES';

@@ -13,3 +13,6 @@
     border-radius: 5px;
     margin-inline: 5px
 }
+.pagination button.active{
+    background: var(--violeta);
+}

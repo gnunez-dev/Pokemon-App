@@ -2,10 +2,11 @@ import Pokemon from '../Pokemon/Pokemon'
 import Pagination from '../Pagination/Pagination.js'
 import './Pokemons.css';
 
-const Pokemons = ({pokemonsLength, currentPokemons, pokemonsPerPage, handlePaginate}) => {
+const Pokemons = ({pokemonsLength, currentPokemons, pokemonsPerPage, handlePaginate, currentPage}) => {
 
     return(
         <div className='cont-pokemons'>
+            <h1>Pokemons</h1>
             <div className='pokemons'>
                 { currentPokemons && currentPokemons.map( p => {
                     return(
@@ -25,6 +26,7 @@ const Pokemons = ({pokemonsLength, currentPokemons, pokemonsPerPage, handlePagin
                 pokemonsPerPage={pokemonsPerPage}
                 totalPokemons={pokemonsLength}
                 handlePaginate={handlePaginate}
+                currentPage={currentPage}
             />
         </div>
     )

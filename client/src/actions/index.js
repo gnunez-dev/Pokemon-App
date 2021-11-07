@@ -1,4 +1,4 @@
-import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_FROM, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON } from "./constants";
+import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON } from "./constants";
 import axios from "axios"
 
 //La acción es simplemente para despachar un tipo
@@ -66,7 +66,7 @@ export const filterPokemonsByType = (type) => {
 
 export const filterPokemonsFrom = (from) => {
 
-    return { type: FILTER_FROM, payload: from }
+    return { type: FILTER_ORIGIN, payload: from }
 
 }
 

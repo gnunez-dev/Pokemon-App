@@ -1,12 +1,13 @@
-import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_FROM, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON } from "../actions/constants";
-
+import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON } from "../actions/constants";
+import { ordenPokemons, ordenPokemonsAttack, pokemonsFilterType, pokemonsFilterOrigin } from './utils'
 
 const initialState = {
     pokemonsList: [], // se guardan los pokemons que se van a mostrar. En princpio estan todo, luego va depender de los filtros activos.
     allPokemons: [], // Se guardan todos los pokemons, en base a este se hacen los filtros para setear a pokemonsList
     allTypes: [],
     pokemonId : {}, 
-    pokemonName : {}
+    pokemonName : {},
+    noHayResultados: false
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -18,68 +19,41 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state, 
                 allPokemons: action.payload,
-                pokemonsList: action.payload
+                pokemonsList: action.payload,
+                noHayResultados: action.payload.length > 0 ? false : true
             }
 
         case FILTER_ORDER:
 
-            const ordenPokemons = action.payload === 'asc' 
-                ? 
-                    state.pokemonsList.sort( (a, b) => {
-                        if( a.name > b.name ) return 1
-                        if( b.name > a.name ) return -1
-                        return 0
-                    })
-                :
-                    state.pokemonsList.sort( (a, b) => {
-                        if( a.name > b.name ) return -1
-                        if( a.name > b.name ) return 1
-                        return 0
-                    });
-
             return {
                 ...state,
-                pokemonsList: ordenPokemons
+                pokemonsList: ordenPokemons(state, action.payload)
 
             }
+
         case FILTER_ORDER_ATTACK:
 
-            const ordenPokemonsAttack = action.payload === 'asc' 
-            ? 
-                state.pokemonsList.sort( (a, b) => {
-                    if( a.attack > b.attack ) return 1
-                    if( b.attack > a.attack ) return -1
-                    return 0
-                })
-            :
-                state.pokemonsList.sort( (a, b) => {
-                    if( a.attack > b.attack ) return -1
-                    if( a.attack > b.attack ) return 1
-                    return 0
-                });
             return {
                 ...state,
-                pokemonsList: ordenPokemonsAttack
+                pokemonsList: ordenPokemonsAttack(state, action.payload)
             }
+
         case FILTER_TYPE:
 
-            const pokemonsFilters = state.allPokemons.filter( p => p.types.includes(action.payload) ) 
-            const filterPokemons = action.payload === 'all' ? state.allPokemons : pokemonsFilters
-            
-
+            const filterResultType = pokemonsFilterType(state, action.payload)
             return {
                 ...state,
-                pokemonsList: filterPokemons
+                pokemonsList: filterResultType,
+                noHayResultados: filterResultType.length > 0 ? false : true
             }
         
-        case FILTER_FROM:
+        case FILTER_ORIGIN:
 
-            const pokemonsFrom = action.payload === 'existentes' ? state.allPokemons.filter( p => p.id && typeof p.id === 'number') : state.allPokemons.filter( p => p.id && typeof p.id !== 'number')
-            const pokemonsFilterFrom = action.payload === 'all' ? state.allPokemons : pokemonsFrom
-
+            const filterResultOrigin = pokemonsFilterOrigin(state, action.payload)
             return {
                 ...state,
-                pokemonsList: pokemonsFilterFrom
+                pokemonsList: filterResultOrigin,
+                noHayResultados: filterResultOrigin.length > 0 ? false : true
             }
 
         case GET_TYPES:
@@ -90,23 +64,29 @@ export default function rootReducer(state = initialState, action) {
             }
         
         case GET_POKEMON_NAME:
+
             return {
                 ...state,
-                pokemonsList: action.payload
+                pokemonsList: action.payload,
+                noHayResultados: state.pokemonsList.length === 0 ? true : false
             }
 
         case GET_POKEMON_ID:
+
             return {
                 ...state,
-                pokemonId: action.payload
+                pokemonId: action.payload,
+                noHayResultados: state.pokemonsList.length === 0 ? true : false
             }
 
         case ADD_POKEMON:
+
             return {
                 ...state
             }
 
         default:
+
             return { ...state }
 
     }

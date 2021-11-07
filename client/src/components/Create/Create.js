@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypes, createPokemon } from '../../actions/index';
 import Container from '../Container/Container';
-import Nav from '../Nav/Nav';
 import Input from "../Input/Input";
 import './Create.css';
 
@@ -89,13 +88,50 @@ const Create = () => {
        
     }
 
-    const validateSubmint = () => {
-        
+    const validateSubmint = ( e ) => {
+        e.preventDefault();
+        let validation = 0;
+
+        for (const key in formulario) {
+
+            if ( typeof formulario[key] === 'array' ) {
+                
+                if( formulario[key].length === 0 ){
+                    errors.types = errorValidate.types.msg
+                    validation++;
+                } else {
+                    errors.types = ''
+                }
+                
+            } else {
+
+                if( !formulario[key] ){
+                    errors[key] = errorValidate[key].msg
+                    validation++;
+                } else {
+                    errors[key] = ''
+                }
+
+            }
+
+        }
+
+        if( validation === 0 ){
+
+            handleSubmint(e)
+            console.log( 'validation0', {validate, errors})
+            
+        } else {
+            setErrors(errors)
+            console.log( 'validationE', {validate, errors})
+        }
+
+
     }
 
     useEffect( () => {
         dispatch( getTypes() )
-    }, [dispatch])
+    }, [dispatch] )
 
     const handleSubmint = (e) => {
         e.preventDefault();
@@ -126,16 +162,23 @@ const Create = () => {
                 types: [...formulario.types, e.target.value]
             })
         }
+
+        validate({
+            ...formulario,
+            [e.target.name] : e.target.value
+        }, e);
+
+        setErrors(errors)
+
     }
 
   
     
     return (
         <div className="cont-create">
-            <Nav/>
             <Container>
                 
-                <form onSubmit={handleSubmint}>
+                <form onSubmit={validateSubmint}>
                     
                     <Input
                         label='Name'

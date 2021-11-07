@@ -22,7 +22,7 @@ const usePagination = ( {pageNumber, pokemons, numberPerPage} ) => {
     }; 
 
     //retornamos los pokemons que se mostraran en la pág actual, la cantidad de pokemons que queremos por pág y la función que permite el cambio de pág
-    return [ currentPokemons, pokemonsPerPage, handlePaginate ]
+    return [ currentPokemons, pokemonsPerPage, currentPage, handlePaginate ]
     
 
 }

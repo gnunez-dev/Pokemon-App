@@ -1,54 +1,56 @@
-import { useState, useEffect} from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { filterPokemonsByOrden, filterPokemonsByOrdenAttack, filterPokemonsFrom, filterPokemonsByType, getTypes } from "../../actions/index";
 import Filter from '../Filter/Filter';
-
 import SearchBar from '../SearchBar/SearchBar';
 import './Filters.css'
 
 
-const Filters = ({handlePaginate}) => {
+const Filters = ({handleChange}) => {
 
     let dispatch = useDispatch();
     let types = useSelector( state => state.allTypes )
-    
-    
 
     useEffect( () => {
         dispatch( getTypes() )
     }, [dispatch])
 
-
     return (
+
         <nav className='filters'>
 
             <SearchBar/>
+            
             <Filter
-                name='Ordernar'
+                label='Ordernar'
+                name='ordenar'
                 options={[{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
                 action={filterPokemonsByOrden}
-                handlePaginate={handlePaginate}
+                handleChange={handleChange}
             />
 
             <Filter
-                name='Attack'
+                label='Attack'
+                name='attack'
                 options={[{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
                 action={filterPokemonsByOrdenAttack}
-                handlePaginate={handlePaginate}
+                handleChange={handleChange}
             />
 
             <Filter
-                name='Types'
-                options={[...types, {value:'all', name:'All'}]}
+                label='Types'
+                name='types'
+                options={[{value:'all', name:'All'}, ...types]}
                 action={filterPokemonsByType}
-                handlePaginate={handlePaginate}
+                handleChange={handleChange}
             />
 
             <Filter
-                name='Origen'
-                options={[{id:'all', name:'All'},{id:'existentes', name:'Existentes'},{id:'creados', name:'Creados'}]}
+                label='Origin'
+                name='origin'
+                options={[{value:'all', name:'All'},{value:'existentes', name:'Existentes'},{value:'creados', name:'Creados'}]}
                 action={filterPokemonsFrom}
-                handlePaginate={handlePaginate}
+                handleChange={handleChange}
             />
 
         </nav>
