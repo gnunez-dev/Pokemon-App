@@ -12,47 +12,54 @@ import './Home.css'
 
 const Home = () => {
 
-  let dispatch = useDispatch(); 
-  let pokemons = useSelector( state => state.pokemonsList ) //Con esto se toman los pokemons del state
-  let noHayResultados = useSelector( state => state.noHayResultados ) 
-  let [currentPokemons, pokemonsPerPage, currentPage, handlePaginate] = usePagination({pageNumber:1, pokemons, numberPerPage: 12}); // con esto tomamos la info del hook creado para manejar la paginación
-  
-  
-
-
-  useEffect( () => {
-    dispatch(getPokemons())
-  }, [dispatch]);
-
-
-  let acctionFilters = {
+  let actionFilters = {
     ordenar: filterPokemonsByOrden,
     attack: filterPokemonsByOrdenAttack,
     types: filterPokemonsByType,
     origin: filterPokemonsFrom,
   }
   let stateFilters = {
-      ordenar: '',
-      attack: '',
-      types: '',
-      origin: '',
+    ordenar: '',
+    attack: '',
+    types: 'all',
+    origin: 'all',
   }
 
+  let dispatch = useDispatch(); 
+  let pokemons = useSelector( state => state.pokemonsList ) //Con esto se toman los pokemons del state
+  let noHayResultados = useSelector( state => state.noHayResultados ) 
+  let [currentPokemons, pokemonsPerPage, currentPage, handlePaginate] = usePagination({pageNumber:1, pokemons, numberPerPage: 12}); // con esto tomamos la info del hook creado para manejar la paginación
   let [filters, setFilters] = useState(stateFilters)
 
+  useEffect( () => {
+    dispatch(getPokemons())
+  }, [dispatch]);
+
+
+
   const handleFilters = (e) => {
-      dispatch( acctionFilters[e.target.name](e.target.value) )
+      dispatch( actionFilters[e.target.name](e.target.value) )
       setFilters( {...filters, [e.target.name]: e.target.value }) 
+  }
+
+  const handleClearFilter = (e) => {
+    e.preventDefault();
+    dispatch( actionFilters.origin('all') )
+    dispatch( actionFilters.types('all') )
+    setFilters({...filters, types: 'all', origin: 'all'})
+    handlePaginate(1)
+    
   }
 
 
 
   return (
     <div className="cont-home">
-
-      <h1>Pokemons</h1>
       <Container>
-        <Filters handleChange={handleFilters}/>
+        <Filters 
+          handleChange={handleFilters}
+          handleSubmit={handleClearFilter}
+        />
         {    
           noHayResultados ?
 
@@ -70,7 +77,7 @@ const Home = () => {
             
             : 
 
-            <img src={Loading}/>
+            <img src={Loading} alt='loading...'/>
         
         }
       </Container>

@@ -5,3 +5,7 @@ nav.filters{
     border-radius: 30px;
     min-height: 100vh;
 }
+
+nav.filters .search-bar{
+    margin-bottom: 30px
+}

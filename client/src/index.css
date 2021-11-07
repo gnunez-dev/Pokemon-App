@@ -8,6 +8,7 @@
   --blanco: #ffffff;
   --fonttitle:'Bebas Neue', 'sans-serif';
   --font: 'Zen Kaku Gothic Antique', sans-serif;
+  --transition: all ease 0.3s;
 }
 
 body {
@@ -24,4 +25,9 @@ h1, h2, h3, h4, h5, h6{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:focus-visible {
+  outline: 1px solid var(--violetaoscura);
+  box-shadow: 0 0 4px var(--violetaoscura);
 }

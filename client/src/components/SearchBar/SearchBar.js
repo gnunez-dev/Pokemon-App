@@ -1,6 +1,9 @@
 import {useState, useRef} from 'react';
 import { useDispatch } from 'react-redux';
 import {getPokemonByName} from '../../actions/index'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import './SearchBar.css';
 
 
 const SearchBar = () =>{
@@ -10,7 +13,6 @@ const SearchBar = () =>{
     let searchInput = useRef();
 
     const handleSubmint = (e) => {
-        console.log('handlesubmint', searchInput.current.value)
         e.preventDefault();
         dispatch( getPokemonByName(searchInput.current.value) )
         setSearch(`search: ${searchInput.current.value}`);
@@ -19,9 +21,9 @@ const SearchBar = () =>{
     
     
     return (
-        <form onSubmit={handleSubmint}>
-            <input type="text" name="search" ref={searchInput}/>
-            <button>Buscar</button>
+        <form onSubmit={handleSubmint} className="search-bar">
+            <input type="text" name="search" ref={searchInput} placeholder='Search...'/>
+            <button><FontAwesomeIcon icon={faSearch}/></button>
         </form>
     )
 

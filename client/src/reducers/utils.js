@@ -19,7 +19,9 @@ export const ordenPokemons = ( state, payload ) => {
     } else {
 
         return state.pokemonsList.sort( (a, b) => {
-            return 0.5 - Math.random
+            if( a.name > Math.random() ) return -1
+            if( b.name > Math.random() ) return 1
+            return 0
         });
 
     } 

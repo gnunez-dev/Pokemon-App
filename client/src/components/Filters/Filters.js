@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import './Filters.css'
 
 
-const Filters = ({handleChange}) => {
+const Filters = ({handleChange, handleSubmit}) => {
 
     let dispatch = useDispatch();
     let types = useSelector( state => state.allTypes )
@@ -24,7 +24,7 @@ const Filters = ({handleChange}) => {
             <Filter
                 label='Ordernar'
                 name='ordenar'
-                options={[{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
+                options={[{value:'', name:'- Select an option -'},{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
                 action={filterPokemonsByOrden}
                 handleChange={handleChange}
             />
@@ -32,7 +32,7 @@ const Filters = ({handleChange}) => {
             <Filter
                 label='Attack'
                 name='attack'
-                options={[{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
+                options={[{value:'', name:'- Select an option -'},{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
                 action={filterPokemonsByOrdenAttack}
                 handleChange={handleChange}
             />
@@ -52,6 +52,10 @@ const Filters = ({handleChange}) => {
                 action={filterPokemonsFrom}
                 handleChange={handleChange}
             />
+
+            <form onSubmit={ (e) => handleSubmit(e) }>
+                <button>Clear filters</button>
+            </form>
 
         </nav>
     )
