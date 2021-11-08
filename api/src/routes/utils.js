@@ -135,6 +135,44 @@ const getTypes = async () => {
     
 }
 
+
+const getPokemonsRelated = async (id) => {
+    
+    try{
+
+        let idGet;
+        if(id.length > 3 ){
+            idGet = id
+        } else {
+            idGet = Number(id)
+        }
+
+        let listado = await getPokemons();
+        let pokemonSelected = listado.filter( p => p && p.id === idGet)
+        let related = [];
+        let relatedId = []
+
+        for (let i = 0; i < listado.length; i++){
+
+            for( let j = 0; j < pokemonSelected[0].types.length; j++){
+
+                if( listado[i].types.includes(pokemonSelected[0].types[j]) && listado[i].id !== idGet && !relatedId.includes(listado[i].id) ){
+                    related.push( listado[i] )
+                    relatedId.push( listado[i].id ) 
+                }
+
+            }
+
+        }
+        
+        return related;
+
+    } catch(error) {
+        return error;
+    }
+
+}
+
 const createPokemon = async ( obj ) => {
 
     let {name, hp, attack, defense, speed, height, weight, image, types } = obj;
@@ -149,5 +187,6 @@ module.exports = {
     getPokemonById,
     getPokemonByName,
     getTypes,
+    getPokemonsRelated,
     createPokemon
 }

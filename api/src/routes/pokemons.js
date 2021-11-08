@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {getPokemons, getPokemonById, getPokemonByName, createPokemon} = require('../routes/utils')
+const {getPokemons, getPokemonById, getPokemonByName, createPokemon, getPokemonsRelated} = require('../routes/utils')
 
 
 const router = Router();
@@ -61,12 +61,26 @@ router.post('/', async (req, res) =>{
         res.send(newPokemon)
 
     } catch(error){
-        console.log('error ruta post', error)
+
         return res.status(400).json({msg:'error, por favor vuelve a intentarlo', error})
 
     }
 
 });
 
+router.get('/related/:id', async(req, res) => {
+    console.log('ruta related', req.params)
+    try{
+
+        let {id} = req.params;
+        let related = await getPokemonsRelated(id)
+        console.log('ruta', {related})
+        res.send(related)
+
+    } catch(error){
+        res.status(500).json({msg: 'error ruta', error}) 
+    }
+
+})
 
 module.exports = router;

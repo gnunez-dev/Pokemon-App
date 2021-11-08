@@ -14,96 +14,105 @@ const DetailsPokemon = () => {
     let pokemon = useSelector( state => state.pokemonId)
     let pokemonsCarrusel = useSelector( state => state.pokemonsCarrusel )
     let {id} = useParams();
+    let [ loading, setLoading] = useState(true);
 
     useEffect( () => {
         dispatch(getPokemonById(id))
     }, [id, dispatch])
 
     useEffect( () => {
-        dispatch(getPokemonCarrusel(id))
+        dispatch(getPokemonCarrusel(id));
     }, [id, dispatch] )
 
+    useEffect( () => {
+        setLoading(false)
+    }, [pokemon] )
 
-    /* 
-    id(pin):4
-name(pin):"charmander"
-hp(pin):39
-attack(pin):52
-defense(pin):43
-speed(pin):65
-height(pin):6
-weight(pin):85
-image(pin):
-    */
+    
     return ( 
-        <div className="cont-DetailsPokemon">
-            
-                <div className='cont-title'>
-                    <Container>
-                        <h1>{  pokemon.name }</h1>
-                    </Container>
-                </div>
-                <div className='detailsPokemon'>
-                    <Container>
-                        <div className='cont-image'>
-                            <img src={ pokemon.image } alt={ pokemon.name } />
-                        </div>
-                        <div className='cont-details'>
-                            <ul>
-                                <li key='1li'><h4>Life</h4><span>{pokemon.hp}</span></li>
-                                <li key='2li'><h4>Attack</h4><span>{pokemon.attack}</span></li>
-                                <li key='3li'><h4>Defense</h4><span>{pokemon.defense}</span></li>
-                                <li key='4li'><h4>Speed</h4><span>{pokemon.speed}</span></li>
-                                <li key='5li'><h4>Height</h4><span>{pokemon.height}</span></li>
-                                <li key='6li'><h4>Weight</h4><span>{pokemon.weight}</span></li>
-                            </ul>
-                            <div className='cont-types'>
+        <div>
+            {
+                loading ?
 
-                                <h4>Types</h4>
-                                    <ul>
-                                        {   pokemon.types && pokemon.types.map( t => {
+                `Loading...`
 
-                                               return <li key={t}>{t}</li>
-                                            })
-
-                                        }
-                                            
-                                    </ul>
+                :
+                <div  className="cont-DetailsPokemon">
+                    <div className='cont-title'>
+                        <Container>
+                            <h1>{  pokemon.name }</h1>
+                        </Container>
+                    </div>
+                    <div className='detailsPokemon'>
+                        <Container>
+                            <div className='cont-image'>
+                                <img src={ pokemon.image } alt={ pokemon.name } />
                             </div>
-                        </div>
-                    </Container>
-                    
+                            <div className='cont-details'>
+                                <ul>
+                                    <li key='1li'><h4>Life</h4><span>{pokemon.hp}</span></li>
+                                    <li key='2li'><h4>Attack</h4><span>{pokemon.attack}</span></li>
+                                    <li key='3li'><h4>Defense</h4><span>{pokemon.defense}</span></li>
+                                    <li key='4li'><h4>Speed</h4><span>{pokemon.speed}</span></li>
+                                    <li key='5li'><h4>Height</h4><span>{pokemon.height}</span></li>
+                                    <li key='6li'><h4>Weight</h4><span>{pokemon.weight}</span></li>
+                                </ul>
+                                <div className='cont-types'>
+
+                                    <h4>Types</h4>
+                                        <ul>
+                                            {   pokemon.types && pokemon.types.map( t => {
+
+                                                return <li key={t}>{t}</li>
+                                                })
+
+                                            }
+                                                
+                                        </ul>
+                                </div>
+                            </div>
+                        </Container>
+                        
+                    </div>
+                    { 
+                        pokemonsCarrusel && pokemonsCarrusel.length > 0 
+                    ?
+                            <div className='cont-carrusel'>
+
+                                <Container>
+
+                                    <h2>Related Pokemon</h2>
+                                    <span>Total Results: {pokemonsCarrusel.length}</span>
+
+                                    <Carousel
+                                        show={3}
+                                        responsive={true}
+                                        dynamic={true}
+
+                                    >
+                                        
+                                        {
+                                            pokemonsCarrusel.map( p => {
+
+                                                return <Pokemon 
+                                                    key={p.id}
+                                                    id={p.id}
+                                                    image={p.image}
+                                                    name={p.name}
+                                                    types={p.types}
+                                                />
+                                            })
+                                        }
+                                    </Carousel>
+
+                                </Container>
+                            </div>
+                        : ``
+                    }
+
                 </div>
-                { 
-                    pokemonsCarrusel && pokemonsCarrusel.length > 0 
-                   ?
-                        <div className='cont-carrusel'>
 
-                            <Container>
-
-                                <h2>Related Pokemon</h2>
-                                <Carousel
-                                    show={3}
-                                    responsive={true}
-                                >
-                                    
-                                    {
-                                        pokemonsCarrusel.map( p => {
-
-                                            return <Pokemon 
-                                                id={p.id}
-                                                image={p.image}
-                                                name={p.name}
-                                                types={p.types}
-                                            />
-                                        })
-                                    }
-                                </Carousel>
-
-                            </Container>
-                        </div>
-                    : ``
-                }
+            }
         </div>
     )
     

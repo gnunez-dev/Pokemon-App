@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTypes, createPokemon } from '../../actions/index';
 import Container from '../Container/Container';
 import Input from "../Input/Input";
+import SweetAlert from 'react-bootstrap-sweetalert';
 import './Create.css';
 
 
@@ -10,12 +11,13 @@ const Create = () => {
 
     let inicialStateFormulario = {
         name: "",
-        hp: null,
-        attack: null,
-        defense: null,
-        speed: null,
-        height: null,
-        weight: null,
+        image: '',
+        hp: '',
+        attack: '',
+        defense: '',
+        speed: '',
+        height: '',
+        weight: '',
         types: [] 
     }
     let errorInicialState = {
@@ -33,44 +35,64 @@ const Create = () => {
     let dispatch = useDispatch();
     let typesPokemons = useSelector( state => state.allTypes ) 
     let [errors, setErrors] = useState(errorInicialState)
+    let [errorSubmint, setErrorSubmint] = useState('');
+    let [showAlert, setShowAlert] = useState(false)
 
 
     let errorValidate = {
         name: {
             condition: formulario.name.length < 3 ,
-            msg: 'Debe completar este campo, debe contener por lo menos 3 letras'
+            msg: 'You must complete this field, it must contain at least 3 letters',
+            prev:'',
+            next: 'image'
         },
         image: {
             condition: !/^(ftp|http|https):\/\/[^ "]+$/.test(formulario.image),
-            msg: 'Debe completar este campo, debe contener una url'
+            msg: 'You must complete this field, it must contain a url',
+            prev: 'name',
+            next: 'hp'
         },
         hp: {
-            condition: formulario.hp < 0,
-            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+            condition: formulario.hp < 1,
+            msg: 'This field is required, it must have a numeric value',
+            prev: 'image',
+            next: 'attack'
         },
         attack: {
-            condition: formulario.attack < 0,
-            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+            condition: formulario.attack < 1,
+            msg: 'This field is required, it must have a numeric value',
+            prev: 'hp',
+            next: 'defense'
         },
         defense: {
-            condition: formulario.defense < 0,
-            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+            condition: formulario.defense < 1,
+            msg: 'This field is required, it must have a numeric value',
+            prev: 'attack',
+            next: 'speed'
         },
         speed: {
-            condition: formulario.speed < 0,
-            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+            condition: formulario.speed < 1,
+            msg: 'This field is required, it must have a numeric value',
+            prev: 'defense',
+            next: 'height'
         },
         height: {
-            condition: formulario.height < 0,
-            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+            condition: formulario.height < 1,
+            msg: 'This field is required, it must have a numeric value',
+            prev: 'speed',
+            next: 'weight'
         },
         weight: {
-            condition: formulario.weight < 0 ,
-            msg: 'Este campo es requerido, debe tener un valor como minimo de 1'
+            condition: formulario.weight < 1 ,
+            msg: 'This field is required, it must have a numeric value',
+            prev: 'height',
+            next: 'types'
         },
         types: {
             condition: formulario.types.length === 0,
-            msg: 'Este campo es requerido, debes seleccionar por lo menos un tipo de pokemon'
+            msg: 'This field is required, you must select at least one type of pokemon',
+            prev: 'weight',
+            next: ''
         },
 
     }
@@ -85,11 +107,35 @@ const Create = () => {
         } else {
             errors[e.target.name] = ''
         }
+
+        let prev = errorValidate[e.target.name].prev;
+        let next = errorValidate[e.target.name].next;
+
+        if(prev.length > 0 ){
+
+            if( !formulario[prev] || errorValidate[prev].condition ){
+                errors[prev] = errorValidate[prev].msg
+            } else {
+                errors[prev] = ''
+            }
+
+        }
+
+        if( next.length > 0 ){
+
+            if( !formulario[next] || errorValidate[next].condition ){
+                errors[next] = errorValidate[next].msg
+            } else {
+                errors[next] = ''
+            }
+        
+        }
        
     }
 
     const validateSubmint = ( e ) => {
         e.preventDefault();
+
         let validation = 0;
 
         for (const key in formulario) {
@@ -119,11 +165,10 @@ const Create = () => {
         if( validation === 0 ){
 
             handleSubmint(e)
-            console.log( 'validation0', {validate, errors})
             
         } else {
-            setErrors(errors)
-            console.log( 'validationE', {validate, errors})
+            setErrors(errors);
+            setErrorSubmint('Please complete all fields')
         }
 
 
@@ -137,6 +182,7 @@ const Create = () => {
         e.preventDefault();
         dispatch(createPokemon(formulario))
         setFormulario(inicialStateFormulario);
+        setShowAlert(true)
     }
 
     const handleChange = (e) => {
@@ -177,6 +223,13 @@ const Create = () => {
     return (
         <div className="cont-create">
             <Container>
+
+            <SweetAlert
+                show={showAlert}
+                title="Created"
+                text="El nuevo pokemon ha sido creado con éxito!"
+                onConfirm={() => setShowAlert(false)}
+            />
                 
                 <form onSubmit={validateSubmint}>
                     
@@ -278,7 +331,10 @@ const Create = () => {
                         }
 
                     </div>
-                    <button className={ errors ? `btn-desactive` : `btn-act`}>Crear</button>
+                    {
+                        errorSubmint && <p className='error-form'>{errorSubmint}</p>
+                    }
+                    <button className={ errors ? `btn btn-desactive` : `btn btn-act`}>Crear</button>
                 </form>
             </Container>
         </div>

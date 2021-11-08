@@ -42,7 +42,7 @@ module.exports = (sequelize) => {
       validator: {
         isUrl: true
       },
-      defaultValue: 'https://www.pinclipart.com/picdir/middle/558-5584022_png-photos-pokemon-tcgo-transparent-background-pokeball-png.png'
+      defaultValue: 'https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/592-female.svg'
     },
   });
 };
