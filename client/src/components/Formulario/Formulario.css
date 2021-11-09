@@ -113,7 +113,6 @@
     display: table;
     margin: 30px auto 0;
     padding: 14px 30px 16px;
-    background: var(--rosa);
     border-radius: 3px;
     border: 0;
     color: var(--blanco);
@@ -121,9 +120,11 @@
     font-weight: 700;
     word-spacing: 0.5px;
     line-height: 1.2;
+    background: var(--violeta);
+    box-shadow: 2px 2px 3px var(--violetaoscura);
+    transition: var(--transition);
 }
 
 .cont-form .btn:hover{
-    background: var(--violeta);
-    box-shadow: 2px 2px 3px var(--violetaoscura);
+    background: var(--rosa);
 }

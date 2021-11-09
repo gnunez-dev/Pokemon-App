@@ -18,6 +18,10 @@
     display: inline-block;
 }
 
+.cont-create  h1{
+    margin: 80px auto 0;
+    font-size: 45px;
+}
 
 .sweet-alert .btn.btn-primary{
     text-decoration: none;
@@ -31,4 +35,8 @@
 .sweet-alert .btn.btn-primary:hover{
     background: var(--violeta);
 
+}
+
+@media(max-width: 992px){
+    
 }

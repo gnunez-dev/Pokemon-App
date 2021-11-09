@@ -125,3 +125,53 @@
 .cont-DetailsPokemon .pokemon {
     width: calc(100% - 34px);
 }
+
+.cont-DetailsPokemon .cont-carrusel{
+    padding-block: 40px 80px;
+}
+.cont-DetailsPokemon .cont-carrusel h2{
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-size: 30px;
+}
+
+.cont-DetailsPokemon .cont-carrusel h2 ~ span{
+    text-align: center;
+    display: table;
+    margin: 0 auto 20px;
+    padding: 4px 15px 7px;
+    border-radius: 30px;
+    color: var(--violeta);
+    border: 1px solid var(--violeta)
+
+}
+
+.cont-DetailsPokemon .cont-carrusel .styles-module_carousel-base__3keqD {
+    align-items: center;
+}
+
+.cont-DetailsPokemon .cont-carrusel .styles-module_carousel-base__3keqD svg path{
+    fill: var(--violeta)!important;
+}
+div.cont-carrusel > div > div > :is(div:nth-child(1), div:nth-child(3)){
+    border: 1px solid var(--violetaoscura);
+    box-shadow: 2px 2px 3px var(--violetaoscura);
+    width: 30px;
+    text-align: center;
+    height: 27px;
+    padding-top:2px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+div.cont-carrusel > div > div > :is(div:nth-child(1), div:nth-child(3)):hover{
+    background: var(--amarillo);
+}
+
+
+div.cont-carrusel > div > div > div:nth-child(1){
+    margin-left: -20px;
+}
+
+div.cont-carrusel > div > div > div:nth-child(3){
+    margin-right: -20px;
+}

@@ -260,7 +260,11 @@ const Create = () => {
     
     return (
         <div className="cont-create">
+
+            <h1>Create a pokemon!</h1>
             <Container>
+
+            
 
             <SweetAlert
                 show={showAlert}
