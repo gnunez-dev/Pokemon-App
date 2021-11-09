@@ -7,7 +7,7 @@ const NoResult = () => {
     return(
         <div className='cont-no-result'>
 
-            <img src={ImgNoResult} className='img-no-result'/>
+            <img src={ImgNoResult} className='img-no-result' alt='No Results Found'/>
             <h2>no results found</h2>
 
         </div>

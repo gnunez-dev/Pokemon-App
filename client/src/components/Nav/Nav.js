@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../img/logo-pokemon.svg';
 import Container from '../Container/Container';
 import './Nav.css';
@@ -10,7 +10,7 @@ export function Nav() {
       <Container>
     
         <div className='cont-logo-nav'>
-          <Logo className="logo-nav"/>
+          <Link to='/home'><Logo className="logo-nav"/></Link>
         </div>
         <nav className='nav-menu'>
           <NavLink exact to="/" activeClassName="item-nav-menu-selected" className="item-nav-menu">Landing Page</NavLink>

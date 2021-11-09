@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {getPokemonById, getPokemonCarrusel} from '../../actions/index';
 import { Carousel } from '@trendyol-js/react-carousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import Container from "../Container/Container";
 import Pokemon from "../Pokemon/Pokemon";
 import './DetailsPokemon.css'
@@ -88,8 +90,11 @@ const DetailsPokemon = () => {
                                         show={3}
                                         responsive={true}
                                         dynamic={true}
+                                        leftArrow={<FontAwesomeIcon icon={faArrowLeft}/>}
+                                        rightArrow={<FontAwesomeIcon icon={faArrowRight}/>}
+                                        
 
-                                    >
+                                    >   
                                         
                                         {
                                             pokemonsCarrusel.map( p => {

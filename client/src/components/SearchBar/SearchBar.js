@@ -15,14 +15,21 @@ const SearchBar = () =>{
     const handleSubmint = (e) => {
         e.preventDefault();
         dispatch( getPokemonByName(searchInput.current.value) )
-        setSearch(`search: ${searchInput.current.value}`);
+        setSearch('');
+    }
+
+    const handleChange = (e) => {
+
+        e.preventDefault();
+        setSearch(e.target.value)
+
     }
 
     
     
     return (
         <form onSubmit={handleSubmint} className="search-bar">
-            <input type="text" name="search" ref={searchInput} placeholder='Search...'/>
+            <input type="text" name="search" ref={searchInput} value={search} onChange={(e) => handleChange(e)} placeholder='Search...'/>
             <button><FontAwesomeIcon icon={faSearch}/></button>
         </form>
     )

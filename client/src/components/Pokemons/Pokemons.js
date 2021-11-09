@@ -6,7 +6,7 @@ const Pokemons = ({pokemonsLength, currentPokemons, pokemonsPerPage, handlePagin
 
     return(
         <div className='cont-pokemons'>
-            <h1>Pokemons</h1>
+            <h1>Pokemon</h1>
             <span>Total Result: { pokemonsLength}</span>
             <div className='pokemons'>
                 { currentPokemons && currentPokemons.map( p => {

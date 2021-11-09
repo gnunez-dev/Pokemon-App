@@ -22,7 +22,7 @@ const Home = () => {
     ordenar: '',
     attack: '',
     types: 'all',
-    origin: 'all',
+    origin: 'all'
   }
 
   let dispatch = useDispatch(); 
@@ -78,7 +78,7 @@ const Home = () => {
             
             : 
 
-            <img src={Loading} alt='loading...'/>
+            <img src={Loading} alt='loading...' className='img-loading'/>
         
         }
       </Container>

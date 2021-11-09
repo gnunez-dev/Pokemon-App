@@ -10,7 +10,10 @@
     flex-direction: row;
 }
 
-
+.img-loading{
+    display: table;
+    margin-inline: auto
+}
 @media(max-width:768px){
     .cont-home{
         padding: 20px 10px 30px;

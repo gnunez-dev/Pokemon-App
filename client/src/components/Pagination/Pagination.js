@@ -21,9 +21,9 @@ const Pagination = ({ pokemonsPerPage, totalPokemons, handlePaginate, currentPag
                    
                     <button
                         key={n}
-                        className="btn-pagination"
+                        className={ currentPage === n ? `btn-pagination active` : `btn-pagination`}
                         onClick={ ()=> handlePaginate(n)} 
-                        className={ currentPage === n ? `active` : ``}
+                        
                     >
                     {n}
                     </button>

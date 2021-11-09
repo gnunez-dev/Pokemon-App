@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypes, createPokemon } from '../../actions/index';
 import Container from '../Container/Container';
-import Input from "../Input/Input";
+import Formulario from "../Formulario/Formulario";
+import PokemonCreate from "../PokemonCreate/PokemonCreate"
 import SweetAlert from 'react-bootstrap-sweetalert';
 import './Create.css';
 
 
 const Create = () => {
+
+    let dispatch = useDispatch();
+    let typesPokemons = useSelector( state => state.allTypes ) 
 
     let inicialStateFormulario = {
         name: "",
@@ -31,14 +35,28 @@ const Create = () => {
         weight:null,
         types:null,
     }
+
+    let checkedInicialState = (typesPokemons) => {
+        let obj = {}
+        for(let i = 0; i<typesPokemons.length; i++){
+            obj[typesPokemons[i].id] = false;
+        }
+        return obj
+    }
+
     let [formulario, setFormulario ] = useState(inicialStateFormulario);
-    let dispatch = useDispatch();
-    let typesPokemons = useSelector( state => state.allTypes ) 
-    let [errors, setErrors] = useState(errorInicialState)
+    
+    let [errors, setErrors] = useState(errorInicialState);
     let [errorSubmint, setErrorSubmint] = useState('');
-    let [showAlert, setShowAlert] = useState(false)
+    let [showAlert, setShowAlert] = useState(false);
+    let [checked, setchecked] = useState(checkedInicialState(typesPokemons));
+
+    useEffect( () => {
+        dispatch( getTypes() )
+    }, [dispatch] )
 
 
+    
     let errorValidate = {
         name: {
             condition: formulario.name.length < 3 ,
@@ -130,6 +148,7 @@ const Create = () => {
             }
         
         }
+
        
     }
 
@@ -140,7 +159,7 @@ const Create = () => {
 
         for (const key in formulario) {
 
-            if ( typeof formulario[key] === 'array' ) {
+            if ( formulario[key].isArray() ) {
                 
                 if( formulario[key].length === 0 ){
                     errors.types = errorValidate.types.msg
@@ -174,15 +193,14 @@ const Create = () => {
 
     }
 
-    useEffect( () => {
-        dispatch( getTypes() )
-    }, [dispatch] )
+   
 
     const handleSubmint = (e) => {
         e.preventDefault();
         dispatch(createPokemon(formulario))
         setFormulario(inicialStateFormulario);
-        setShowAlert(true)
+        setShowAlert(true);
+        setchecked(checkedInicialState(typesPokemons));
     }
 
     const handleChange = (e) => {
@@ -196,26 +214,46 @@ const Create = () => {
             ...formulario,
             [e.target.name] : e.target.value
         }, e);
-
+        
         setErrors(errors)
 
     } 
     
     const handleCheckbox = (e) => {
-        if(e.target.checked){
+
+
+        if( !e.target.checked){
+
+            formulario.types = formulario.types.filter( t => t !== e.target.value )
+
             setFormulario({
                 ...formulario,
-                types: [...formulario.types, e.target.value]
+                types: [...formulario.types ]
             })
+
+            setchecked({...checked, [e.target.value] : false})
+
+        } else {
+
+            if(e.target.checked){
+
+                
+                setFormulario({
+                    ...formulario,
+                    types: [...formulario.types, e.target.value]
+                })
+                setchecked({...checked, [e.target.value] : true})
+
+            }
+
+            validate({
+                ...formulario,
+                [e.target.name] : e.target.value
+            }, e);
+
+            setErrors(errors)
         }
-
-        validate({
-            ...formulario,
-            [e.target.name] : e.target.value
-        }, e);
-
-        setErrors(errors)
-
+        
     }
 
   
@@ -226,116 +264,25 @@ const Create = () => {
 
             <SweetAlert
                 show={showAlert}
-                title="Created"
-                text="El nuevo pokemon ha sido creado con éxito!"
+                title="It has been created successfully!"
                 onConfirm={() => setShowAlert(false)}
             />
+
+            <PokemonCreate
+                formulario={formulario}
+                typesPokemons={typesPokemons}
+            />
                 
-                <form onSubmit={validateSubmint}>
-                    
-                    <Input
-                        label='Name'
-                        type='text'
-                        name='name'
-                        value={formulario.name}
-                        error={errors.name}
-                        handleChange={handleChange}
-                    />
-                    <Input
-                        label='Imagen'
-                        type='text'
-                        name='image'
-                        value={formulario.image}
-                        error={errors.image}
-                        handleChange={handleChange}
-                    />
-                    <Input
-                        label='Life'
-                        type='number'
-                        name='hp'
-                        value={formulario.hp}
-                        error={errors.hp}
-                        handleChange={handleChange}
-                    />
-                    <Input
-                        label='Attack'
-                        type='number'
-                        name='attack'
-                        value={formulario.attack}
-                        error={errors.attack}
-                        handleChange={handleChange}
-                    />
-                
-                    <Input
-                        label='Defense'
-                        type='number'
-                        name='defense'
-                        value={formulario.defense}
-                        error={errors.defense}
-                        handleChange={handleChange}
-                    />
-                
-                    <Input
-                        label='Speed'
-                        type='number'
-                        name='speed'
-                        value={formulario.speed}
-                        error={errors.speed}
-                        handleChange={handleChange}
-                    />
-                    
-                    <Input
-                        label='Height'
-                        type='number'
-                        name='height'
-                        value={formulario.height}
-                        error={errors.height}
-                        handleChange={handleChange}
-                    />
-                    
-                    <Input
-                        label='Weight'
-                        type='number'
-                        name='weight'
-                        value={formulario.weight}
-                        error={errors.weight}
-                        handleChange={ handleChange }
-                    />
-                    
-
-                    <div className='cont-types'>
-                        <label>Types</label>
-                        {
-                            typesPokemons && typesPokemons.map( t => {
-                                return (
-                                    <label className="item-types">
-                                        <input 
-                                            type="checkbox"
-                                            name="types"
-                                            key={t.id}
-                                            value={t.id}
-                                            onChange={ (e) => handleCheckbox(e) }
-                                            />
-                                        {t.name}
-
-                                        <br/>
-                                    </label>
-                                    )
-                            })
-                        }
-
-                        {
-                            errors.types && (
-                               <p className='error-form'>{errors.types}</p>
-                            )
-                        }
-
-                    </div>
-                    {
-                        errorSubmint && <p className='error-form'>{errorSubmint}</p>
-                    }
-                    <button className={ errors ? `btn btn-desactive` : `btn btn-act`}>Crear</button>
-                </form>
+            <Formulario 
+                formulario={formulario}
+                errors={errors}
+                typesPokemons={typesPokemons}
+                handleChange={handleChange}
+                handleCheckbox={handleCheckbox}
+                validateSubmint={validateSubmint}
+                errorSubmint={errorSubmint}
+                checked={checked}
+            />
             </Container>
         </div>
     )

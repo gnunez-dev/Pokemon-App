@@ -12,7 +12,7 @@ const LandingPage = () => {
                 <section>
                     <LogoPokemon className="logo-landingpage" />
                     <Link to='/home' className="btn-landingpage">
-                        <button>See Pokemons</button>
+                        <button>See Pokemon</button>
                     </Link>
                 </section>
             </Container>
