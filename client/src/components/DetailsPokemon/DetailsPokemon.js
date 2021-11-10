@@ -31,9 +31,9 @@ const DetailsPokemon = () => {
             {
                 !pokemon.hasOwnProperty('id') ?
 
-                <Container>
+                
                     <img src={Loading} className='loading' alt='Loading...'/>
-                </Container>
+                
                 :
                 <div  className="cont-DetailsPokemon">
                     <div className='cont-title'>
