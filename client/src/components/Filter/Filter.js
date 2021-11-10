@@ -3,7 +3,7 @@ import './Filter.css';
 const Filter = ({label, name, options, handleChange, selected  }) => {
 
     return(
-        <div key={name.toString(8)} className="item-filter">
+        <div className="item-filter">
             <label>{label}</label>
             <select onChange={ (e) => handleChange(e)} name={name} value={selected}>
                 {
@@ -12,9 +12,9 @@ const Filter = ({label, name, options, handleChange, selected  }) => {
 
                             name === 'Types'
                             ? 
-                            <option key={op.id} value={op.name} >{op.name}</option>
+                            <option key={`${op.id}-${op.name}`} value={op.name}>{op.name}</option>
                             :
-                            <option key={op.value} value={op.value}>{op.name}</option>
+                            <option key={`${op.value}-${op.name}`} value={op.value}>{op.name}</option>
                         )
                     })
                 }

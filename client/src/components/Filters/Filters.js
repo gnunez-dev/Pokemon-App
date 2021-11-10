@@ -5,6 +5,7 @@ import Filter from '../Filter/Filter';
 import SearchBar from '../SearchBar/SearchBar';
 import './Filters.css'
 
+let arrayKey = ['881','882','883','884','885','886'];
 
 const Filters = ({handleChange, handleSubmit, selected }) => {
 
@@ -19,10 +20,10 @@ const Filters = ({handleChange, handleSubmit, selected }) => {
 
         <nav className='filters'>
 
-            <SearchBar/>
+            <SearchBar key={arrayKey[0]}/>
             
             <Filter
-                key='1f'
+                key={arrayKey[1]}
                 label='Ordernar'
                 name='ordenar'
                 options={[{value:'', name:'- Select an option -'},{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
@@ -32,7 +33,7 @@ const Filters = ({handleChange, handleSubmit, selected }) => {
             />
 
             <Filter
-                key='2f'
+                key={arrayKey[2]}
                 label='Attack'
                 name='attack'
                 options={[{value:'', name:'- Select an option -'},{value:'asc', name:'Ascendiente'}, {value:'desc', name:'Descendiente'}]}
@@ -42,7 +43,7 @@ const Filters = ({handleChange, handleSubmit, selected }) => {
             />
 
             <Filter
-                key='3f'
+                key={arrayKey[3]}
                 label='Types'
                 name='types'
                 options={[{value:'all', name:'All'}, ...types]}
@@ -52,7 +53,7 @@ const Filters = ({handleChange, handleSubmit, selected }) => {
             />
 
             <Filter
-                key='4f'
+                key={arrayKey[4]}
                 label='Origin'
                 name='origin'
                 options={[{value:'all', name:'All'},{value:'existentes', name:'Existentes'},{value:'creados', name:'Creados'}]}
@@ -61,7 +62,7 @@ const Filters = ({handleChange, handleSubmit, selected }) => {
                 selected ={selected.origin}
             />
 
-            <form onSubmit={ (e) => handleSubmit(e) } className='clear-filters'>
+            <form key={arrayKey[5]} onSubmit={ (e) => handleSubmit(e) } className='clear-filters'>
                 <button>Clear filters</button>
             </form>
 

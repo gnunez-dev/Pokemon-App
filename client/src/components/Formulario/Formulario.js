@@ -1,13 +1,14 @@
 import Input from '../Input/Input';
 import './Formulario.css';
 
+let arrayKey = ['551', '552', '553', '554', '555', '556', '557', '558', '559', '5510']
 const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, typesPokemons, validateSubmint, errorSubmint}) =>{
  return(
     <div className='cont-form'>
         <form onSubmit={validateSubmint}>
                         
         <Input
-            key='1Inp'
+            key={arrayKey[0]}
             label='Name'
             type='text'
             name='name'
@@ -16,7 +17,7 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
             handleChange={handleChange}
         />
         <Input
-            key='2Inp'
+            key={arrayKey[1]}
             label='Imagen'
             type='text'
             name='image'
@@ -25,7 +26,7 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
             handleChange={handleChange}
         />
         <Input
-            key='3Inp'
+            key={arrayKey[2]}
             label='Life'
             type='number'
             name='hp'
@@ -34,7 +35,7 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
             handleChange={handleChange}
         />
         <Input
-            key='4Inp'
+            key={arrayKey[3]}
             label='Attack'
             type='number'
             name='attack'
@@ -44,7 +45,7 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
         />
 
         <Input
-            key='5Inp'
+            key={arrayKey[4]}
             label='Defense'
             type='number'
             name='defense'
@@ -54,7 +55,7 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
         />
 
         <Input
-            key='6Inp'
+            key={arrayKey[5]}
             label='Speed'
             type='number'
             name='speed'
@@ -64,7 +65,7 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
         />
         
         <Input
-            key='7Inp'
+            key={arrayKey[6]}
             label='Height'
             type='number'
             name='height'
@@ -74,7 +75,7 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
         />
         
         <Input
-            key='8Inp'
+            key={arrayKey[7]}
             label='Weight'
             type='number'
             name='weight'
@@ -89,11 +90,10 @@ const Formulario = ({formulario, errors, checked, handleChange, handleCheckbox, 
             {
                 typesPokemons && typesPokemons.map( t => {
                     return (
-                        <div className="item-types">
+                        <div key={`tt${t.id}`} className="item-types">
                             <input 
                                 type="checkbox"
                                 name="types"
-                                key={t.id}
                                 id={t.id}
                                 value={t.id}
                                 onChange={ (e) => handleCheckbox(e) }
