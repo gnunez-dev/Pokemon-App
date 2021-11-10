@@ -35,7 +35,7 @@ const DetailsPokemon = () => {
                     <img src={Loading} className='loading' alt='Loading...'/>
                 
                 :
-                <div  className="cont-DetailsPokemon">
+                <div className="cont-DetailsPokemon">
                     <div className='cont-title'>
                         <Container>
                             <h1>{  pokemon.name }</h1>
@@ -56,17 +56,14 @@ const DetailsPokemon = () => {
                                     <li key='6li'><h4>Weight</h4><span>{pokemon.weight}</span></li>
                                 </ul>
                                 <div className='cont-types'>
-
                                     <h4>Types</h4>
-                                        <ul>
-                                            {   pokemon.types && pokemon.types.map( t => {
-
+                                    <ul>
+                                        {
+                                            pokemon.types && pokemon.types.map( t => {
                                                 return <li key={t}>{t}</li>
-                                                })
-
-                                            }
-                                                
-                                        </ul>
+                                            })
+                                        }
+                                    </ul>
                                 </div>
                             </div>
                         </Container>
@@ -80,7 +77,7 @@ const DetailsPokemon = () => {
                                 <Container>
 
                                     <h2>Related Pokemon</h2>
-                                    <span>Total Results: {pokemonsCarrusel.length}</span>
+                                    <span>{`Total Results: ${pokemonsCarrusel.length}`}</span>
 
                                     <Carousel
                                         show={3}

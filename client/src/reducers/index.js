@@ -70,7 +70,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 pokemonsList: action.payload,
-                noHayResultados: state.pokemonsList.length === 0 ? true : false
+                noHayResultados: state.pokemonsList.length > 0 ? false : true
             }
 
         case GET_POKEMON_ID:
@@ -78,7 +78,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 pokemonId: action.payload,
-                noHayResultados: state.pokemonsList.length === 0 ? true : false
+                noHayResultados: state.pokemonsList.length > 0 ? false : true
             }
 
         case ADD_POKEMON:

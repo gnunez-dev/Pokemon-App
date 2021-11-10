@@ -159,7 +159,7 @@ const Create = () => {
 
         for (const key in formulario) {
 
-            if ( formulario[key].isArray() ) {
+            if ( Array.isArray(formulario[key]) ) {
                 
                 if( formulario[key].length === 0 ){
                     errors.types = errorValidate.types.msg

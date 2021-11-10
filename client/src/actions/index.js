@@ -27,7 +27,6 @@ export const getTypes = () => {
 }
 
 export const getPokemonByName = (name) => {
-    console.log('accion', name)
     return dispatch => {
         return axios.get(`http://localhost:3001/pokemons/?name=${name}`)
             .then( pokemonName => dispatch( { type: GET_POKEMON_NAME, payload: pokemonName.data } ))
