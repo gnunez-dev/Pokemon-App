@@ -1,4 +1,4 @@
-import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON, GET_POKEMON_DETAILS_CARRUSEL } from "./constants";
+import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON, GET_POKEMON_DETAILS_CARRUSEL, CLEAN_POKEMON_ID } from "./constants";
 import axios from "axios"
 
 //La acción es simplemente para despachar un tipo
@@ -87,4 +87,8 @@ export const createPokemon = (newPokemon) => {
             .then( newPokemon => dispatch({type:ADD_POKEMON, payload: newPokemon.data}) )
             .catch( error => { return {msg: 'Ha ocurrido un error al tratar de crear el nuevo pokemon', error}})
     }
+}
+
+export const clearPokemonId = () => {
+    return { type: CLEAN_POKEMON_ID, payload: {} }
 }

@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import {getPokemonById, getPokemonCarrusel} from '../../actions/index';
+import { getPokemonById, getPokemonCarrusel } from '../../actions/index';
 import { Carousel } from '@trendyol-js/react-carousel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Container from "../Container/Container";
 import Pokemon from "../Pokemon/Pokemon";
+import Loading from '../../img/ball-triangle.svg';
 import './DetailsPokemon.css'
 
 
@@ -16,7 +17,6 @@ const DetailsPokemon = () => {
     let pokemon = useSelector( state => state.pokemonId)
     let pokemonsCarrusel = useSelector( state => state.pokemonsCarrusel )
     let {id} = useParams();
-    let [ loading, setLoading] = useState(true);
 
     useEffect( () => {
         dispatch(getPokemonById(id))
@@ -26,18 +26,14 @@ const DetailsPokemon = () => {
         dispatch(getPokemonCarrusel(id));
     }, [id, dispatch] )
 
-    useEffect( () => {
-        setLoading(false)
-    }, [pokemon] )
-
-    
     return ( 
         <div>
             {
-                loading ?
+                !pokemon.hasOwnProperty('id') ?
 
-                `Loading...`
-
+                <Container>
+                    <img src={Loading} className='loading' alt='Loading...'/>
+                </Container>
                 :
                 <div  className="cont-DetailsPokemon">
                     <div className='cont-title'>
@@ -92,10 +88,7 @@ const DetailsPokemon = () => {
                                         dynamic={true}
                                         leftArrow={<FontAwesomeIcon icon={faArrowLeft}/>}
                                         rightArrow={<FontAwesomeIcon icon={faArrowRight}/>}
-                                        
-
                                     >   
-                                        
                                         {
                                             pokemonsCarrusel.map( p => {
 

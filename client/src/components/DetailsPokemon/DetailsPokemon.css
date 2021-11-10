@@ -4,8 +4,9 @@
     align-items: center;
 }
 
-.cont-DetailsPokemon > .container{
-
+.loading{
+    display: table;
+    margin: 25vh auto 0;
 }
 
 .cont-title{
@@ -36,6 +37,7 @@
     justify-content: center;
     background: var(--violeta);
     margin-bottom: 80px;
+    padding-block: 70px 50px;
 }
 
 .detailsPokemon .container{

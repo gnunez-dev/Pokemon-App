@@ -1,8 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { clearPokemonId } from '../../actions/index'
 import './Pokemon.css';
 
 const Pokemon = ({ id, image, name, types }) => {
+
+    let dispatch = useDispatch();
+    const handleClick = () =>{
+        dispatch(clearPokemonId())
+    }
 
     return (
         
@@ -23,7 +30,7 @@ const Pokemon = ({ id, image, name, types }) => {
             
             </div>
 
-            <Link to={`/pokemon/${id}`} className='btn-see-details'>See Details</Link>
+            <Link to={`/pokemon/${id}`} className='btn-see-details' onClick={ handleClick } >See Details</Link>
 
         </div>
     )

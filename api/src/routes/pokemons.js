@@ -13,8 +13,7 @@ router.get('/:id', async (req, res, next) => {
     try {
         let {id} = req.params; 
         let pokemon = await getPokemonById(id);
-        console.log('ruta', {pokemon})
-        res.send( pokemon )
+        res.send( pokemon );
 
     } catch (error) {
         res.status(500).json({msg: 'error ruta', error})   
@@ -29,10 +28,8 @@ router.get('/', async (req, res, next) => {
 
     try {
         let {name} = req.query; 
-        console.log('try name', name)
         let pokemon = await getPokemonByName(name);
-        console.log('ruta', {pokemon})
-        res.send( pokemon )
+        res.send( pokemon );
 
     } catch (error) {
         res.status(500).json({msg: 'error ruta', error})   
@@ -74,7 +71,6 @@ router.get('/related/:id', async(req, res) => {
 
         let {id} = req.params;
         let related = await getPokemonsRelated(id)
-        console.log('ruta', {related})
         res.send(related)
 
     } catch(error){
