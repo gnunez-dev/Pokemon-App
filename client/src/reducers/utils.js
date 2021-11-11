@@ -1,26 +1,26 @@
 export const ordenPokemons = ( state, payload ) => {
-    
+    console.log('reducer orden', state.pokemonsList)
     if( payload === 'asc'){
 
         return state.pokemonsList.sort( (a, b) => {
-            if( a.name > b.name ) return 1
-            if( b.name > a.name ) return -1
+            if( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+            if( b.name.toLowerCase() > a.name.toLowerCase() ) return -1
             return 0
         })
 
     } else if( payload === 'desc' ){
 
         return state.pokemonsList.sort( (a, b) => {
-            if( a.name > b.name ) return -1
-            if( a.name > b.name ) return 1
+            if( a.name.toLowerCase() > b.name.toLowerCase() ) return -1
+            if( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
             return 0
         });
 
     } else {
 
         return state.pokemonsList.sort( (a, b) => {
-            if( a.name > Math.random() ) return -1
-            if( b.name > Math.random() ) return 1
+            if( a.name.toLowerCase() > Math.random() ) return -1
+            if( b.name.toLowerCase() > Math.random() ) return 1
             return 0
         });
 
@@ -60,7 +60,7 @@ export const pokemonsFilterType = (state, payload) => {
         
     } else {
 
-        return state.allPokemons.filter( p => p.types.includes(payload) )
+        return state.allPokemons.filter( p => p.types.includes(payload.toLowerCase()) )
 
     }
 

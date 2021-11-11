@@ -1,4 +1,4 @@
-import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON, GET_POKEMON_DETAILS_CARRUSEL, CLEAN_POKEMON_ID } from "./constants";
+import {SEARCH_TYPE, GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON, GET_POKEMON_DETAILS_CARRUSEL, CLEAN_POKEMON_ID } from "./constants";
 import axios from "axios"
 
 //La acción es simplemente para despachar un tipo
@@ -90,4 +90,8 @@ export const createPokemon = (newPokemon) => {
 
 export const clearPokemonId = () => {
     return { type: CLEAN_POKEMON_ID, payload: {} }
+}
+
+export const searchForType = (type) => {
+    return {type: SEARCH_TYPE, payload: type}
 }

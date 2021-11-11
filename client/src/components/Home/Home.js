@@ -48,7 +48,6 @@ const Home = () => {
     dispatch( actionFilters.types('all') )
     setFilters(stateFilters)
     handlePaginate(1)
-    
   }
 
 

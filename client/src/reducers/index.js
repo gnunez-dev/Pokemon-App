@@ -1,4 +1,4 @@
-import { GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON, GET_POKEMON_DETAILS_CARRUSEL, CLEAN_POKEMON_ID } from "../actions/constants";
+import { SEARCH_TYPE, GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON, GET_POKEMON_DETAILS_CARRUSEL, CLEAN_POKEMON_ID } from "../actions/constants";
 import { ordenPokemons, ordenPokemonsAttack, pokemonsFilterType, pokemonsFilterOrigin } from './utils'
 
 const initialState = {
@@ -100,6 +100,12 @@ export default function rootReducer(state = initialState, action) {
                 pokemonId: action.payload
             }
 
+        case SEARCH_TYPE:
+
+            return{
+                ...state,
+                pokemonsList: pokemonsFilterType(state, action.payload)
+            }
         default:
 
             return { ...state }
