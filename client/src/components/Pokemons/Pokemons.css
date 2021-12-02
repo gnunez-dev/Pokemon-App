@@ -1,0 +1,32 @@
+.cont-pokemons{
+    width: 80%;
+}
+.cont-pokemons h1{
+    text-align: center;
+    margin: 20px auto;
+}
+
+.cont-pokemons h1 ~ span{
+    display: table;
+    margin: 0 auto 30px;
+    border: 1px solid var(--violeta);
+    padding: 2px 15px 6px;
+    border-radius: 30px;
+}
+.cont-pokemons .pokemons{
+    display: flex;
+    width: calc( 33.33% -20px);
+    flex-wrap: wrap;
+}
+
+@media(max-width:768px){
+    .cont-pokemons{
+        width: 100%;
+    }
+}
+
+@media(max-width:465px){
+    .cont-pokemons h1{
+        margin-top: 50px;
+    }
+}

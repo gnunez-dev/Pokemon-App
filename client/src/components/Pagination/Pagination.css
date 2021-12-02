@@ -1,0 +1,18 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    padding-block: 20px;
+}
+.pagination button{
+    background: var(--rosa);
+    border: 0;
+    padding: 5px 10px;
+    color: var(--blanco);
+    font-size: 20px;
+    font-family: var(--font);
+    border-radius: 5px;
+    margin-inline: 5px
+}
+.pagination button.active{
+    background: var(--violeta);
+}

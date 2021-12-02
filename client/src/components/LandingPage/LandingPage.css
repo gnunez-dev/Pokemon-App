@@ -1,0 +1,57 @@
+.cont-landingpage{
+    background-image: url('../../img/pokemons-landingpage.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+.cont-landingpage .container{
+    display: flex;
+    justify-content: flex-end;
+}
+.cont-landingpage section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: 80px;
+}
+
+.cont-landingpage section .logo-landingpage{
+    width: 500px;
+}
+.btn-landingpage{
+    margin-top: 50px;
+}
+.cont-landingpage section .btn-landingpage button{
+    padding: 14px 30px 16px;
+    color: var(--blanco);
+    background: var(--rosa);
+    box-shadow: 2px 3px 8px var(--violetaoscura);
+    font-size: 19px;
+    font-weight: 700;
+    word-spacing: 0.5px;
+    line-height: 1.2;
+    border: 0;
+    border-radius: 3px;
+    font-family: var(--font);
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+.cont-landingpage section button:hover{
+    background: var(--violetaoscura);
+    box-shadow: 2px 3px 14px var(--violetaoscura);
+}
+
+@media(max-width: 992px){
+    .cont-landingpage section .logo-landingpage{
+        width: 280px;
+        display: block;
+        margin-inline: auto;
+    }
+}

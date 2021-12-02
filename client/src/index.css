@@ -1,0 +1,37 @@
+:root {
+  --violeta: #5646b7;
+  --violetaoscura: #342785;
+  --rosa: #ed8599;
+  --amarillo: #ffcb05;
+  --grisoscuro: #333333;
+  --negro: #000000;
+  --blanco: #ffffff;
+  --fonttitle:'Bebas Neue', 'sans-serif';
+  --font: 'Zen Kaku Gothic Antique', sans-serif;
+  --transition: all ease 0.3s;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--fonttitle);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:focus-visible {
+  outline: 1px solid var(--violetaoscura);
+  box-shadow: 0 0 4px var(--violetaoscura);
+}
+
+button{
+  cursor: pointer
+}
