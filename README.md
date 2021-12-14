@@ -31,7 +31,7 @@ localhost:3000
 Previsualización
 ===========
 
-<img src='https://github.com/gnunez-dev/PI-Pokemon/blob/main/pokemon.png' style='width:100%'>
+<img src='https://github.com/gnunez-dev/PI-Pokemon/blob/main/pokemon-img.png' style='width:100%'>
 
 
 
