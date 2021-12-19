@@ -17,7 +17,6 @@ const DetailsPokemon = () => {
     let pokemon = useSelector( state => state.pokemonId)
     let pokemonsCarrusel = useSelector( state => state.pokemonsCarrusel )
     let {id} = useParams();
-    let intViewportWidth = window.innerWidth;
 
     useEffect( () => {
         dispatch(getPokemonById(id))
@@ -81,7 +80,7 @@ const DetailsPokemon = () => {
                                     <span>{`Total Results: ${pokemonsCarrusel.length}`}</span>
 
                                     <Carousel
-                                        show={ intViewportWidth && intViewportWidth < 1024 ? 1 : 3}
+                                        show={3}
                                         responsive={true}
                                         dynamic={true}
                                         leftArrow={<FontAwesomeIcon icon={faArrowLeft}/>}
