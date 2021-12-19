@@ -31,14 +31,10 @@
     display: inline-block;
     margin: 5px 7px 0;
 }
-.nav-menu .item-nav-menu:hover{
+.nav-menu .item-nav-menu:hover, .nav-menu .item-nav-menu-selected{
     transition: all ease 0.2s;
     color: var(--rosa);
     text-shadow: 1px 2px 3px var(--violetaoscura);
-    border-bottom: 2px solid var(--violetaoscura);
-}
-.nav-menu .item-nav-menu-selected{
-    border-bottom: 2px solid var(--violetaoscura);
 }
 
 @media(max-width:767px){
@@ -51,4 +47,10 @@
         margin-bottom: 20px;
     }
 
+}
+
+@media(max-width: 425px){
+    .nav-menu .item-nav-menu {
+        font-size: 16px;
+    }
 }

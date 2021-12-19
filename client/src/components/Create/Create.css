@@ -37,6 +37,11 @@
 
 }
 
-@media(max-width: 992px){
-    
+@media(max-width: 768px){
+    .cont-create>.container {
+        flex-direction: column-reverse;
+    }
+    .cont-create>.container > div{
+        width: 100%;
+    }
 }
