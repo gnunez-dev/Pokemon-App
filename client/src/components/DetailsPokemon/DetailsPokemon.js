@@ -80,7 +80,7 @@ const DetailsPokemon = () => {
                                     <span>{`Total Results: ${pokemonsCarrusel.length}`}</span>
 
                                     <Carousel
-                                        show={3}
+                                        show={2}
                                         responsive={true}
                                         dynamic={true}
                                         leftArrow={<FontAwesomeIcon icon={faArrowLeft}/>}
