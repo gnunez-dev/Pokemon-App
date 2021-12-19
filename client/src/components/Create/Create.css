@@ -44,4 +44,16 @@
     .cont-create>.container > div{
         width: 100%;
     }
+    .cont-form .item-types {
+        width: 30%;
+    }
+}
+
+@media(max-width: 425px){
+    .cont-form .item-types {
+        width: 50%;
+    }
+    .cont-form .item-types label{
+        font-size: 15px;
+    }
 }
