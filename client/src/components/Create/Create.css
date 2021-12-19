@@ -47,6 +47,21 @@
     .cont-form .item-types {
         width: 30%;
     }
+    .cont-new-pokemon {
+        margin: 0 50px 0 0;
+    }
+    .new-pokemon .cont-img img {
+        height: 150px;
+    }
+    .new-pokemon .cont-details ul li:not(:last-child) {
+        width: 50%;
+    }
+    .new-pokemon .cont-details ul li h4 {
+        font-size: 20px;
+    }
+    .new-pokemon .cont-details ul li span {
+        font-size: 25px;
+    }
 }
 
 @media(max-width: 425px){
