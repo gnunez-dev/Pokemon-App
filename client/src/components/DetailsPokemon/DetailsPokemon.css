@@ -192,4 +192,9 @@ div.cont-carrusel > div > div > div:nth-child(3){
         margin-inline: auto;
         margin-top: 20px;
     }
+
+    .detailsPokemon .pokemon{
+        width: calc(100% - 34px);
+    }
 }
+
