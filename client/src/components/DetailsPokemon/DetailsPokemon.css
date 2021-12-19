@@ -210,3 +210,23 @@ div.cont-carrusel > div > div > div:nth-child(3){
     
 }
 
+@media(max-width:425px){
+    .cont-carrusel .pokemon .pokemon-img img {
+        height: 70px;
+    }
+    .cont-carrusel .pokemon h3 {
+        font-size: 20px;
+        margin-block: 10px 0;
+    }
+    .cont-DetailsPokemon .cont-carrusel .pokemon {
+        width: calc(100% - 24px);
+        margin-inline: 10px;
+    }
+    .cont-carrusel .pokemon-type {
+        display: none;
+    }
+    .cont-carrusel .pokemon .btn-see-details{
+        font-size: 10px;
+    }
+
+}
