@@ -178,3 +178,18 @@ div.cont-carrusel > div > div > div:nth-child(1){
 div.cont-carrusel > div > div > div:nth-child(3){
     margin-right: -20px;
 }
+
+@media(max-width: 768px){
+    .detailsPokemon .container {
+        flex-direction: column;
+    }
+    .cont-title h1 {
+        font-size: 60px;
+        margin: 50px 10px 10px;
+    }
+    .detailsPokemon .cont-details{
+        max-width: 420px;
+        margin-inline: auto;
+        margin-top: 20px;
+    }
+}
