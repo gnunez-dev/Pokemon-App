@@ -2,9 +2,15 @@
     max-width: 1240px;
     width: 100%;
 }
+@media(max-width: 1200px){
+    .container{
+        max-width: 1000px;
+    }
+}
 
 @media(max-width:992px){
     .container{
-        padding-inline: 15px
+        padding-inline: 15px;
+        max-width: calc( 100% - 30px);
     }
 }
