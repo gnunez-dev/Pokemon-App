@@ -1,34 +1,34 @@
-Uso
+Use
 ===========
 
-Para ejecutarlo hay que crear una base de datos en postgres con el nombre de
+To run it you have to create a database in postgres with the name of
 
 ```
 pokemon
 ```
 
-Luego hacer 
+then do 
 
 ```
 npm install
 npm start
 ```
 
-hay que hacerlo en los directorios api y client.
+you have to do it in the api and client directories.
 
-El back carga en el puerto 3001
+The back loads on port 3001
 ```
 localhost:3001
 ```
 
-El front carga en el 3000
+The front loads on the 3000
 
 ```
 localhost:3000
 ```
 
 
-Previsualización
+Preview
 ===========
 
 <img src='https://github.com/gnunez-dev/PI-Pokemon/blob/main/pokemon-img.png' style='width:100%'>
