@@ -4,6 +4,11 @@ import { ReactComponent as Logo } from '../../img/logo-pokemon.svg';
 import Container from '../Container/Container';
 import './Nav.css';
 
+const classNavLink = ({ isActive }) => {
+  let activeClass = isActive ? "item-nav-menu-selected" : ""
+  return `item-nav-menu ${activeClass}`
+}
+
 export function Nav() {
   return (
     <div className="nav-bar">
@@ -13,9 +18,9 @@ export function Nav() {
           <Link to='/home'><Logo className="logo-nav"/></Link>
         </div>
         <nav className='nav-menu'>
-          <NavLink exact to="/" activeClassName="item-nav-menu-selected" className="item-nav-menu">Landing Page</NavLink>
-          <NavLink to="/home" activeClassName="item-nav-menu-selected" className="item-nav-menu">Home</NavLink>
-          <NavLink to="/create" activeClassName="item-nav-menu-selected" className="item-nav-menu">Create</NavLink>
+          <NavLink to="/" className={classNavLink}>Landing Page</NavLink>
+          <NavLink to="/home" className={classNavLink}>Home</NavLink>
+          <NavLink to="/create" className={classNavLink}>Create</NavLink>
         </nav>
       
       </Container>

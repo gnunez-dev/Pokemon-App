@@ -13,11 +13,10 @@ function App() {
     <>
     <BrowserRouter basename="/">
       <Routes>
-        <Route path={"/"} element={<Nav/>} />
         <Route exact path="/" element={<LandingPage/>} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/create" component={<Create/>} />
-        <Route path="/pokemon/:id"  component={<DetailsPokemon/>}/>
+        <Route path="/home" element={<><Nav/><Home/></>} />
+        <Route path="/create" element={<><Nav/><Create/></>} />
+        <Route path="/pokemon/:id" element={<><Nav/><DetailsPokemon/></>}/>
       </Routes>
     </BrowserRouter>
     
