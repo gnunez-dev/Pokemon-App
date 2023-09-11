@@ -21,7 +21,6 @@ const queryApi = async () =>{
             method: 'get',
             url: `${API_ENDPOINT}pokemon?offset=0&limit=40`,
         });
-
         //esto entra a cada pokemon
         let listPromesas =  query.data.results.map( async (p) => {
 
