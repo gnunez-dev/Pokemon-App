@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import { useDispatch } from 'react-redux';
 import {getPokemonByName} from '../../actions/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -1,3 +1,4 @@
+import React from 'react'
 import './Filter.css';
 
 const Filter = ({label, name, options, handleChange, selected  }) => {

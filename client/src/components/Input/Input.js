@@ -1,3 +1,4 @@
+import React from 'react'
 import './Input.css';
 
 const Input = ({label, name, type, value, error, handleChange}) => {

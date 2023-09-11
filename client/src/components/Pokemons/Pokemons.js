@@ -1,3 +1,4 @@
+import React from 'react'
 import Pokemon from '../Pokemon/Pokemon'
 import Pagination from '../Pagination/Pagination.js'
 import './Pokemons.css';

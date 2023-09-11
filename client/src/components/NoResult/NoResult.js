@@ -1,3 +1,4 @@
+import React from 'react'
 import ImgNoResult from '../../img/no-result.svg'
 import './NoResult.css'
 

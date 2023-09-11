@@ -1,3 +1,4 @@
+import React from 'react'
 import './PokemonCreate.css';
 
 const PokemonCreate = ({formulario, typesPokemons}) =>{
