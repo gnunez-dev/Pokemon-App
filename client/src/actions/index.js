@@ -1,6 +1,6 @@
 import {SEARCH_TYPE, GET_POKEMONS, FILTER_ORDER, FILTER_ORDER_ATTACK, FILTER_TYPE, FILTER_ORIGIN, GET_TYPES, GET_POKEMON_ID, GET_POKEMON_NAME, ADD_POKEMON, GET_POKEMON_DETAILS_CARRUSEL, CLEAN_POKEMON_ID } from "./constants";
 import axios from "axios"
-
+const { REACT_APP_API_ENDPOINT } = process.env;
 //La acción es simplemente para despachar un tipo
 
 
@@ -9,7 +9,7 @@ import axios from "axios"
 export const getPokemons = () => {
 
     return dispatch => {
-        return axios.get('https://serene-escarpment-94215.herokuapp.com/pokemons')
+        return axios.get(`${REACT_APP_API_ENDPOINT}/pokemons`)
             .then( pokemons => dispatch( {type: GET_POKEMONS, payload: pokemons.data} ))
             .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los pokemones', error}})
     }
@@ -19,7 +19,7 @@ export const getPokemons = () => {
 export const getTypes = () => {
 
     return dispatch => {
-        return axios.get('https://serene-escarpment-94215.herokuapp.com/types')
+        return axios.get(`${REACT_APP_API_ENDPOINT}/types`)
             .then( types => dispatch( {type: GET_TYPES, payload: types.data} ))
             .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los types', error}})
     }
@@ -28,7 +28,7 @@ export const getTypes = () => {
 
 export const getPokemonByName = (name) => {
     return dispatch => {
-        return axios.get(`https://serene-escarpment-94215.herokuapp.com/pokemons/?name=${name}`)
+        return axios.get(`${REACT_APP_API_ENDPOINT}/pokemons/?name=${name}`)
             .then( pokemonName => dispatch( { type: GET_POKEMON_NAME, payload: pokemonName.data } ))
             .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los resultados de la busqueda', error}})
     }
@@ -37,7 +37,7 @@ export const getPokemonByName = (name) => {
 
 export const getPokemonById = (id) => {
     return dispatch => {
-        return axios.get(`https://serene-escarpment-94215.herokuapp.com/pokemons/${id}`)
+        return axios.get(`${REACT_APP_API_ENDPOINT}/pokemons/${id}`)
             .then( pokemonID => dispatch({type: GET_POKEMON_ID, payload: pokemonID.data}))
             .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los resultados de la busqueda', error}})
     }
@@ -45,7 +45,7 @@ export const getPokemonById = (id) => {
 
 export const getPokemonCarrusel = (id) => {
     return dispatch => {
-        return axios.get(`https://serene-escarpment-94215.herokuapp.com/pokemons/related/${id}`)
+        return axios.get(`${REACT_APP_API_ENDPOINT}/pokemons/related/${id}`)
         .then( related => dispatch({type: GET_POKEMON_DETAILS_CARRUSEL, payload: related.data}))
         .catch( error => { return {msg: 'Ha ocurrido un error al tratar de obtener los pokemon relacionados', error}})
     }
@@ -82,7 +82,7 @@ export const filterPokemonsFrom = (from) => {
 
 export const createPokemon = (newPokemon) => {
     return dispatch => {
-        return axios.post('https://serene-escarpment-94215.herokuapp.com/pokemons', newPokemon)
+        return axios.post(`${REACT_APP_API_ENDPOINT}/pokemons`, newPokemon)
             .then( newPokemon => dispatch({type:ADD_POKEMON, payload: newPokemon.data}) )
             .catch( error => { return {msg: 'Ha ocurrido un error al tratar de crear el nuevo pokemon', error}})
     }
